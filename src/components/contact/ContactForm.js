@@ -52,7 +52,7 @@ const ContactForm = () => {
         Contact Me
       </h1>
       <p className="mb-6" style={{ color: colors.subtext }}>
-        Feel free to reach out if you'd like to work together!
+        Feel free to reach out if you&apos;d like to work together!
       </p>
 
       {/* Status message */}

@@ -69,7 +69,7 @@ const Introduction = () => {
             transitionDelay: "0.2s",
           }}
         >
-          I'm a web developer specializing in modern JavaScript frameworks,
+          I&apos;m a web developer specializing in modern JavaScript frameworks,
           creating responsive and user-friendly applications. I focus on
           building performant and accessible web experiences with engaging
           animations and intuitive interfaces.
