@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
-import { Home, User, Mail } from "lucide-react";
+import { Home, User, Mail, Github, Linkedin } from "lucide-react";
 import { colors, styles } from "@/styles/theme";
 
 const Sidebar = () => {
@@ -42,6 +42,22 @@ const Sidebar = () => {
     },
   ];
 
+  // Social media links
+  const socialLinks = [
+    {
+      id: "github",
+      icon: <Github size={18} />,
+      url: "https://github.com/Thissutek",
+      ariaLabel: "GitHub Profile",
+    },
+    {
+      id: "linkedin",
+      icon: <Linkedin size={18} />,
+      url: "https://www.linkedin.com/in/jonathan-yau-6a649a207/",
+      ariaLabel: "LinkedIn Profile",
+    },
+  ];
+
   return (
     <div className={styles.sidebar} style={{ backgroundColor: colors.surface }}>
       <div className={styles.sidebarTitle} style={{ color: colors.lavender }}>
@@ -66,8 +82,27 @@ const Sidebar = () => {
         ))}
       </nav>
 
-      <div className={styles.footer} style={{ color: colors.subtext }}>
-        © {new Date().getFullYear()}
+      {/* Social media links at the bottom */}
+      <div className="mt-auto pt-6 flex justify-center space-x-4">
+        {socialLinks.map((social) => (
+          <a
+            key={social.id}
+            href={social.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={social.ariaLabel}
+            className="p-1.5 transition-colors duration-200 rounded-lg hover:bg-opacity-20"
+            style={{ color: colors.text }}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.backgroundColor = `${colors.overlay}33`)
+            }
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.backgroundColor = "transparent")
+            }
+          >
+            {social.icon}
+          </a>
+        ))}
       </div>
     </div>
   );

@@ -69,10 +69,9 @@ const Introduction = () => {
             transitionDelay: "0.2s",
           }}
         >
-          I&apos;m a web developer specializing in modern JavaScript frameworks,
-          creating responsive and user-friendly applications. I focus on
-          building performant and accessible web experiences with engaging
-          animations and intuitive interfaces.
+          I create full-stack web applications with a strong focus on user
+          experience and detail. My background in animation lets me bring
+          interfaces to life with thoughtful motion and design.{" "}
         </p>
       </div>
     </div>
