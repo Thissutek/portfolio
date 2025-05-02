@@ -8,21 +8,21 @@ import VideoJourneyAnimation from "@/components/about/VideoJourneyAnimation";
 // Text content for the journey sections
 const journeySections = [
   {
-    title: "The Beginning",
+    title: "The Creative Foundation",
     content:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras porttitor metus vel nibh convallis, ac commodo dui vehicula. Proin a tortor ac sapien ultricies faucibus vel in nulla. In hac habitasse platea dictumst.",
+      "I began my journey as an Animator, graduating from OCAD University with a strong foundation in visual storytelling and motion design. Animation taught me how to guide attention, evoke emotion, and bring ideas to life — all through movement and intention.",
     accentColor: colors.lavender,
   },
   {
-    title: "The Journey",
+    title: "The Shift to Tech",
     content:
-      "Fusce ut placerat orci nulla pellentesque. Aliquam erat volutpat. Nulla facilisi. Nulla porttitor massa id neque aliquam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed ut perspiciatis unde omnis iste natus error.",
+      "Curious about how animation could enhance user experiences, I dove into UX/UI design. I quickly realized that blending motion with usability had huge potential—so I took it further. I started learning programming and found joy in building the very experiences I used to imagine. What started as curiosity became a passion for creating interactive, functional design.",
     accentColor: colors.blue,
   },
   {
-    title: "The Destination",
+    title: "Full Stack, Fully Integrated",
     content:
-      "Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.",
+      "Today, I’m a full-stack developer who merges animation, design, and code to build seamless, engaging digital experiences. From frontend interfaces to backend logic, I use my multidisciplinary background to create products that not only work beautifully—but feel alive.",
     accentColor: colors.peach,
   },
 ];

@@ -69,9 +69,10 @@ const Introduction = () => {
             transitionDelay: "0.2s",
           }}
         >
-          I create full-stack web applications with a strong focus on user
-          experience and detail. My background in animation lets me bring
-          interfaces to life with thoughtful motion and design.{" "}
+          I&apos;m a full-stack developer who specializes in animation, creating
+          intuitive digital experiences that feel as smooth as they function. By
+          combining backend logic with frontend motion, I craft interfaces that
+          are not only responsive—but memorable{" "}
         </p>
       </div>
     </div>

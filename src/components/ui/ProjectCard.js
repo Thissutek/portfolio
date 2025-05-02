@@ -17,8 +17,9 @@ const ProjectCard = ({
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <Link
+    <a
       href={projectUrl}
+      target="_blank"
       className="rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg flex"
       style={{
         backgroundColor: isHovered ? colors.surface : "transparent",
@@ -28,13 +29,13 @@ const ProjectCard = ({
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Project Image */}
-      <div className="w-24 h-24 bg-gray-700 flex items-center justify-center">
+      <div className="w-50 h-28 bg-gray-700 flex items-center justify-center">
         {imageSrc ? (
           <Image
             src={imageSrc}
             alt={title}
-            width={120}
-            height={120}
+            width={240}
+            height={240}
             className="h-full w-full object-cover"
           />
         ) : (
@@ -64,7 +65,7 @@ const ProjectCard = ({
           </div>
         )}
       </div>
-    </Link>
+    </a>
   );
 };
 
