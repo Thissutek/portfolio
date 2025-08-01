@@ -98,9 +98,27 @@ const DynamicTypography = () => {
   }, [showMainText]);
 
   return (
-    <div className="relative" style={{ zIndex: 102 }}>
+    <div 
+      className="relative" 
+      style={{ 
+        zIndex: 15,
+        minHeight: '300px', // Further reduced total space
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-start'
+      }}
+    >
       {/* Animated Name with Typewriter Effect */}
       <div className="relative mb-4">
+        {/* Hidden placeholder to reserve space */}
+        <h1
+          className="text-5xl lg:text-6xl font-bold tracking-tight invisible absolute inset-0"
+          aria-hidden="true"
+        >
+          Jonathan Yau
+        </h1>
+        
+        {/* Visible animated text */}
         <h1
           className="text-5xl lg:text-6xl font-bold tracking-tight relative"
           style={{
@@ -108,6 +126,8 @@ const DynamicTypography = () => {
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
+            minHeight: '4rem', // Reserve minimum height
+            cursor: 'default',
           }}
         >
           {nameText}
@@ -123,30 +143,53 @@ const DynamicTypography = () => {
         
         {/* Magnetic hover effect */}
         <div 
-          className="absolute inset-0 opacity-0 hover:opacity-20 transition-opacity duration-300 pointer-events-auto"
+          className="absolute inset-0 opacity-0 hover:opacity-20 transition-opacity duration-300 pointer-events-none"
           style={{
             background: `radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), ${colors.lavender} 0%, transparent 50%)`,
             filter: "blur(20px)",
+            cursor: 'default',
+          }}
+        />
+        
+        {/* Invisible mouse tracking overlay */}
+        <div 
+          className="absolute inset-0 pointer-events-auto"
+          style={{ 
+            cursor: 'default',
+            background: 'transparent'
           }}
           onMouseMove={(e) => {
             const rect = e.currentTarget.getBoundingClientRect();
             const x = ((e.clientX - rect.left) / rect.width) * 100;
             const y = ((e.clientY - rect.top) / rect.height) * 100;
-            e.currentTarget.style.setProperty('--mouse-x', `${x}%`);
-            e.currentTarget.style.setProperty('--mouse-y', `${y}%`);
+            const magneticDiv = e.currentTarget.previousElementSibling;
+            if (magneticDiv) {
+              magneticDiv.style.setProperty('--mouse-x', `${x}%`);
+              magneticDiv.style.setProperty('--mouse-y', `${y}%`);
+            }
           }}
         />
       </div>
 
       {/* Morphing Role Text */}
       <div className="relative mb-6 h-12">
+        {/* Hidden placeholder to reserve space for longest role */}
         <h2
-          className={`text-2xl lg:text-3xl font-medium transition-all duration-500 ${
-            showMainText ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-          }`}
+          className="text-2xl lg:text-3xl font-medium invisible absolute inset-0"
+          aria-hidden="true"
+        >
+          Full Stack Engineer|
+        </h2>
+        
+        {/* Visible animated text */}
+        <h2
+          className="text-2xl lg:text-3xl font-medium absolute inset-0"
           style={{ 
             color: colors.peach,
             textShadow: `0 0 20px ${colors.peach}40`,
+            opacity: showMainText ? 1 : 0,
+            transform: showMainText ? 'translateY(0)' : 'translateY(16px)',
+            transition: 'opacity 0.5s ease-out, transform 0.5s ease-out'
           }}
         >
           {roleText}
@@ -170,9 +213,15 @@ const DynamicTypography = () => {
       </div>
 
       {/* Animated Description with Letter Reveal */}
-      <div className={`transition-all duration-1000 delay-1000 ${
-        showMainText ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-      }`}>
+      <div 
+        className="relative"
+        style={{
+          minHeight: '3rem', // Further reduced space for description
+          opacity: showMainText ? 1 : 0,
+          transform: showMainText ? 'translateY(0)' : 'translateY(32px)',
+          transition: 'opacity 1s ease-out 1s, transform 1s ease-out 1s'
+        }}
+      >
         <p
           className="text-lg leading-relaxed max-w-2xl"
           style={{ color: colors.subtext }}
@@ -218,8 +267,18 @@ const DynamicTypography = () => {
         </p>
       </div>
 
-      {/* Floating Elements */}
-      <div className="absolute -top-10 -right-10 w-20 h-20 opacity-20">
+      {/* Floating Elements - positioned absolutely to not affect layout */}
+      <div 
+        className="fixed pointer-events-none"
+        style={{ 
+          top: '10vh', 
+          right: '10vw', 
+          width: '80px', 
+          height: '80px', 
+          opacity: 0.2,
+          zIndex: 101
+        }}
+      >
         <div
           className="w-full h-full rounded-full animate-pulse"
           style={{
@@ -229,7 +288,17 @@ const DynamicTypography = () => {
         />
       </div>
       
-      <div className="absolute -bottom-5 -left-5 w-16 h-16 opacity-30">
+      <div 
+        className="fixed pointer-events-none"
+        style={{ 
+          bottom: '20vh', 
+          left: '5vw', 
+          width: '64px', 
+          height: '64px', 
+          opacity: 0.3,
+          zIndex: 101
+        }}
+      >
         <div
           className="w-full h-full rounded-full animate-pulse"
           style={{

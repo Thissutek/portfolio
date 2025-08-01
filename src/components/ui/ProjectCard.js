@@ -19,24 +19,36 @@ const ProjectCard = ({
 
   return (
     <div
-      className="group relative overflow-hidden rounded-2xl transition-all duration-500 hover:scale-[1.02] cursor-pointer"
+      className="group relative overflow-hidden rounded-2xl cursor-pointer"
       style={{
         zIndex: 70,
         background: `linear-gradient(135deg, ${colors.surface}40 0%, ${colors.overlay}20 100%)`,
         backdropFilter: "blur(20px)",
         border: `1px solid ${colors.overlay}30`,
-        boxShadow: isHovered 
-          ? `0 25px 50px -12px ${colors.base}80, 0 0 0 1px ${accentColor}30`
-          : `0 10px 25px -5px ${colors.base}40`,
+        boxShadow: `0 10px 25px -5px ${colors.base}40`,
+        transform: 'translateZ(0)', // Force GPU acceleration
+        willChange: 'transform, box-shadow',
+        transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
       }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={(e) => {
+        setIsHovered(true);
+        e.currentTarget.style.transform = 'translateZ(0) scale(1.02)';
+        e.currentTarget.style.boxShadow = `0 25px 50px -12px ${colors.base}80, 0 0 0 1px ${accentColor}30`;
+      }}
+      onMouseLeave={(e) => {
+        setIsHovered(false);
+        e.currentTarget.style.transform = 'translateZ(0) scale(1)';
+        e.currentTarget.style.boxShadow = `0 10px 25px -5px ${colors.base}40`;
+      }}
     >
       {/* Gradient overlay for extra depth */}
       <div 
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        className="absolute inset-0 pointer-events-none"
         style={{
-          background: `radial-gradient(circle at 50% 50%, ${accentColor}10 0%, transparent 70%)`
+          background: `radial-gradient(circle at 50% 50%, ${accentColor}10 0%, transparent 70%)`,
+          opacity: isHovered ? 1 : 0,
+          transition: 'opacity 0.3s ease-out',
+          transform: 'translateZ(0)'
         }}
       />
       
@@ -48,7 +60,12 @@ const ProjectCard = ({
             alt={title}
             width={400}
             height={240}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            className="w-full h-full object-cover"
+            style={{
+              transform: isHovered ? 'scale(1.05)' : 'scale(1)',
+              transition: 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+              willChange: 'transform'
+            }}
           />
         ) : (
           <div 
@@ -88,16 +105,26 @@ const ProjectCard = ({
       <div className="p-4 relative z-10">
         <div className="flex items-start justify-between mb-2">
           <h3
-            className="text-lg font-bold leading-tight transition-colors duration-300 group-hover:translate-x-1"
-            style={{ color: isHovered ? accentColor : colors.text }}
+            className="text-lg font-bold leading-tight"
+            style={{ 
+              color: isHovered ? accentColor : colors.text,
+              transform: isHovered ? 'translateX(4px)' : 'translateX(0)',
+              transition: 'color 0.3s ease-out, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+              willChange: 'transform, color'
+            }}
           >
             {title}
           </h3>
           
           {/* Accent line */}
           <div 
-            className="w-6 h-0.5 mt-2 transition-all duration-500 group-hover:w-10"
-            style={{ backgroundColor: accentColor }}
+            className="h-0.5 mt-2"
+            style={{ 
+              width: isHovered ? '40px' : '24px',
+              backgroundColor: accentColor,
+              transition: 'width 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+              willChange: 'width'
+            }}
           />
         </div>
 
@@ -116,19 +143,24 @@ const ProjectCard = ({
         )}
 
         <p 
-          className="text-sm leading-relaxed transition-colors duration-300"
-          style={{ color: isHovered ? colors.subtext : `${colors.subtext}CC` }}
+          className="text-sm leading-relaxed"
+          style={{ 
+            color: isHovered ? colors.subtext : `${colors.subtext}CC`,
+            transition: 'color 0.3s ease-out'
+          }}
         >
           {description}
         </p>
         
         {/* Bottom accent border */}
         <div 
-          className="absolute bottom-0 left-0 h-0.5 transition-all duration-700 group-hover:w-full"
+          className="absolute bottom-0 left-0 h-0.5"
           style={{ 
             width: isHovered ? "100%" : "25%",
             backgroundColor: accentColor,
-            opacity: 0.6
+            opacity: 0.6,
+            transition: 'width 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+            willChange: 'width'
           }}
         />
       </div>

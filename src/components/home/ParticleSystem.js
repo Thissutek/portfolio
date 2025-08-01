@@ -274,7 +274,7 @@ const ParticleSystem = () => {
       className="absolute inset-0 pointer-events-none"
       style={{
         background: "transparent",
-        zIndex: -5,
+        zIndex: -20,
         left: "80px", // Account for sidebar width (w-20 = 80px)
       }}
     />

@@ -1,11 +1,27 @@
 "use client";
 
 import { useRef } from "react";
+import { useRouter } from "next/navigation";
 import { colors } from "@/styles/theme";
 import DynamicTypography from "./DynamicTypography";
 
 const Introduction = () => {
   const containerRef = useRef(null);
+  const router = useRouter();
+
+  const scrollToProjects = () => {
+    const projectsSection = document.querySelector('#projects-section');
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
+  const goToContact = () => {
+    router.push('/contact');
+  };
 
   return (
     <div 
@@ -13,12 +29,13 @@ const Introduction = () => {
       className="w-full relative min-h-screen flex items-center justify-center"
     >
       {/* Main Content */}
-      <div className="relative max-w-4xl mx-auto px-8 py-16" style={{ zIndex: 100 }}>
+      <div className="relative max-w-4xl mx-auto px-8 py-16" style={{ zIndex: 10 }}>
         <DynamicTypography />
         
         {/* Call to Action Buttons */}
-        <div className="flex gap-4 mt-8 opacity-0 animate-fadeInUp relative" style={{ animationDelay: '3.5s', animationFillMode: 'both', zIndex: 110 }}>
+        <div className="flex gap-4 mt-0 opacity-0 animate-fadeInUp relative" style={{ animationDelay: '3.5s', animationFillMode: 'both', zIndex: 20 }}>
           <button
+            onClick={scrollToProjects}
             className="px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 hover:-translate-y-1 group"
             style={{
               background: `linear-gradient(135deg, ${colors.lavender} 0%, ${colors.blue} 100%)`,
@@ -39,6 +56,7 @@ const Introduction = () => {
           </button>
           
           <button
+            onClick={goToContact}
             className="px-6 py-3 rounded-full font-medium border-2 transition-all duration-300 hover:scale-105 hover:-translate-y-1 group"
             style={{
               border: `2px solid ${colors.peach}60`,
@@ -62,8 +80,8 @@ const Introduction = () => {
         </div>
         
         {/* Scroll Indicator - positioned below CTAs */}
-        <div className="flex flex-col items-center gap-2 mt-16 opacity-0 animate-fadeInUp relative" 
-             style={{ animationDelay: '4s', animationFillMode: 'both', zIndex: 105 }}>
+        <div className="flex flex-col items-center gap-2 mt-12 opacity-0 animate-fadeInUp relative" 
+             style={{ animationDelay: '4s', animationFillMode: 'both', zIndex: 15 }}>
           <span className="text-sm" style={{ color: colors.subtext }}>Scroll to explore</span>
           <div 
             className="w-6 h-10 border-2 rounded-full flex justify-center pt-2"
