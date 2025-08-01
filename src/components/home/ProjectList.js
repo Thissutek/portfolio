@@ -71,8 +71,8 @@ const ProjectList = () => {
 
   return (
     <div
-      className={`lg:w-3/5 ${styles.fadeIn} ${showProjects ? styles.fadeInVisible : styles.fadeInHidden}`}
-      style={{ transitionDelay: "0.4s" }}
+      className={`lg:w-3/5 ${styles.fadeIn} ${showProjects ? styles.fadeInVisible : styles.fadeInHidden} relative`}
+      style={{ transitionDelay: "0.4s", zIndex: 60 }}
     >
       <h2 className="text-2xl font-bold mb-6" style={{ color: colors.text }}>
         Featured Projects

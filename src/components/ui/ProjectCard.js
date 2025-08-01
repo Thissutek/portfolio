@@ -21,6 +21,7 @@ const ProjectCard = ({
     <div
       className="group relative overflow-hidden rounded-2xl transition-all duration-500 hover:scale-[1.02] cursor-pointer"
       style={{
+        zIndex: 70,
         background: `linear-gradient(135deg, ${colors.surface}40 0%, ${colors.overlay}20 100%)`,
         backdropFilter: "blur(20px)",
         border: `1px solid ${colors.overlay}30`,
