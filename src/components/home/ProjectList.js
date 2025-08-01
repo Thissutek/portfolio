@@ -47,7 +47,7 @@ const projects = [
     id: 4,
     title: "Alfred Assistant Discord Bot",
     description:
-      "A full-stack modern e-commerce store built for performance and scalability—featuring smooth UI, dynamic product management, and secure checkout",
+      "A versatile Discord bot built with Node.js and Express—featuring automated moderation, custom commands, and seamless server management capabilities",
     imageSrc: "/imgs/discord-bot.png",
     accentColor: colors.teal,
     technologies: ["Node.js", "Express", "Javascript"],
@@ -78,17 +78,25 @@ const ProjectList = () => {
         Featured Projects
       </h2>
 
-      <div className="space-y-4">
-        {projects.map((project) => (
-          <ProjectCard
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        {projects.map((project, index) => (
+          <div
             key={project.id}
-            title={project.title}
-            description={project.description}
-            imageSrc={project.imageSrc}
-            accentColor={project.accentColor}
-            technologies={project.technologies}
-            projectUrl={project.projectUrl}
-          />
+            className="animate-fadeInUp"
+            style={{ 
+              animationDelay: `${index * 0.1}s`,
+              animationFillMode: 'both'
+            }}
+          >
+            <ProjectCard
+              title={project.title}
+              description={project.description}
+              imageSrc={project.imageSrc}
+              accentColor={project.accentColor}
+              technologies={project.technologies}
+              projectUrl={project.projectUrl}
+            />
+          </div>
         ))}
       </div>
     </div>
