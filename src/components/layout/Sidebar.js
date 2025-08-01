@@ -59,7 +59,7 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className={styles.sidebar} style={{ backgroundColor: colors.surface }}>
+    <div className={styles.sidebar} style={{ backgroundColor: colors.surface, zIndex: 200 }}>
       <div className={styles.sidebarTitle} style={{ color: colors.lavender }}>
         JY
       </div>
