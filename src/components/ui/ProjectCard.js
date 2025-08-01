@@ -111,10 +111,10 @@ const ProjectCard = ({
       </div>
 
       {/* Project Content with enhanced spacing */}
-      <div className="p-5 relative z-10 flex-1 flex flex-col">
+      <div className="p-4 md:p-5 relative z-10 flex-1 flex flex-col">
         <div className="flex items-start justify-between mb-2">
           <h3
-            className="text-lg font-bold leading-tight"
+            className="text-base md:text-lg font-bold leading-tight"
             style={{ 
               color: isHovered ? accentColor : colors.text,
               transform: isHovered ? 'translateX(4px)' : 'translateX(0)',
@@ -152,7 +152,7 @@ const ProjectCard = ({
         )}
 
         <p 
-          className="text-sm leading-relaxed flex-1"
+          className="text-xs md:text-sm leading-relaxed flex-1"
           style={{ 
             color: isHovered ? colors.subtext : `${colors.subtext}CC`,
             transition: 'color 0.3s ease-out'

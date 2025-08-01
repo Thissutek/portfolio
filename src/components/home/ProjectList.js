@@ -91,14 +91,14 @@ const ProjectList = () => {
 
   return (
     <div
-      className={`w-full max-w-7xl mx-auto px-4 ${styles.fadeIn} ${showProjects ? styles.fadeInVisible : styles.fadeInHidden} relative`}
+      className={`w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 ${styles.fadeIn} ${showProjects ? styles.fadeInVisible : styles.fadeInHidden} relative`}
       style={{ transitionDelay: "0.4s", zIndex: 60 }}
     >
-      <h2 className="text-2xl font-bold mb-6" style={{ color: colors.text }}>
+      <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6" style={{ color: colors.text }}>
         Featured Projects
       </h2>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-6">
         {projects.map((project, index) => (
           <div
             key={project.id}

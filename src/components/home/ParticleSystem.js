@@ -10,9 +10,11 @@ const ParticleSystem = () => {
   const particlesRef = useRef([]);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
-  const PARTICLE_COUNT = 50;
-  const CONNECTION_DISTANCE = 140;
-  const MOUSE_RADIUS = 200;
+  // Responsive particle counts and settings
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const PARTICLE_COUNT = isMobile ? 25 : 50;
+  const CONNECTION_DISTANCE = isMobile ? 100 : 140;
+  const MOUSE_RADIUS = isMobile ? 150 : 200;
 
   const particleColors = [
     colors.lavender,
