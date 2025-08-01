@@ -19,11 +19,11 @@ const ProjectCard = ({
 
   return (
     <div
-      className="group relative overflow-hidden rounded-2xl cursor-pointer"
+      className="group relative overflow-hidden rounded-2xl cursor-pointer flex flex-col h-full"
       style={{
         zIndex: 70,
-        background: `linear-gradient(135deg, ${colors.surface}40 0%, ${colors.overlay}20 100%)`,
-        backdropFilter: "blur(20px)",
+        background: `linear-gradient(135deg, ${colors.surface}60 0%, ${colors.overlay}40 100%)`,
+        backdropFilter: "blur(60px)",
         border: `1px solid ${colors.overlay}30`,
         boxShadow: `0 10px 25px -5px ${colors.base}40`,
         transform: 'translateZ(0)', // Force GPU acceleration
@@ -41,6 +41,15 @@ const ProjectCard = ({
         e.currentTarget.style.boxShadow = `0 10px 25px -5px ${colors.base}40`;
       }}
     >
+      {/* Background overlay for better text readability */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `${colors.base}15`,
+          backdropFilter: "blur(20px)",
+        }}
+      />
+      
       {/* Gradient overlay for extra depth */}
       <div 
         className="absolute inset-0 pointer-events-none"
@@ -53,7 +62,7 @@ const ProjectCard = ({
       />
       
       {/* Project Image with enhanced styling */}
-      <div className="relative h-32 overflow-hidden">
+      <div className="relative h-40 overflow-hidden">
         {imageSrc ? (
           <Image
             src={imageSrc}
@@ -102,7 +111,7 @@ const ProjectCard = ({
       </div>
 
       {/* Project Content with enhanced spacing */}
-      <div className="p-4 relative z-10">
+      <div className="p-5 relative z-10 flex-1 flex flex-col">
         <div className="flex items-start justify-between mb-2">
           <h3
             className="text-lg font-bold leading-tight"
@@ -143,7 +152,7 @@ const ProjectCard = ({
         )}
 
         <p 
-          className="text-sm leading-relaxed"
+          className="text-sm leading-relaxed flex-1"
           style={{ 
             color: isHovered ? colors.subtext : `${colors.subtext}CC`,
             transition: 'color 0.3s ease-out'
