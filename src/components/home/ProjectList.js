@@ -44,7 +44,7 @@ const projects = [
     projectUrl: "https://github.com/Thissutek/my-ecommerce-app",
   },
   {
-    id: 3,
+    id: 4,
     title: "Alfred Assistant Discord Bot",
     description:
       "A full-stack modern e-commerce store built for performance and scalability—featuring smooth UI, dynamic product management, and secure checkout",

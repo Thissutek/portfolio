@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useMemo } from "react";
 import { colors } from "@/styles/theme";
 import JourneySection from "@/components/about/JourneySection";
 import VideoJourneyAnimation from "@/components/about/VideoJourneyAnimation";
@@ -36,7 +36,7 @@ export default function About() {
   // First threshold (when to switch from section 1 to 2): decreased from 0.3 to 0.25
   // Second threshold (when to switch from section 2 to 3): increased from 0.7 to 0.85
   // This creates a much longer active period for the second section
-  const thresholds = [0.25, 0.85];
+  const thresholds = useMemo(() => [0.25, 0.85], []);
 
   // Handle scroll events
   useEffect(() => {
