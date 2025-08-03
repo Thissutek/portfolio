@@ -8,7 +8,7 @@ const JourneySection = ({
 }) => {
   return (
     <div
-      className="transition-opacity duration-700"
+      className="transition-opacity duration-500 ease-in-out"
       style={{
         opacity: isActive ? 1 : 0,
         pointerEvents: isActive ? "auto" : "none",
