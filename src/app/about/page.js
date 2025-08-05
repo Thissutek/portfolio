@@ -32,11 +32,8 @@ export default function About() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [activeSection, setActiveSection] = useState(0);
 
-  // ADJUSTED THRESHOLDS - giving the second section more scroll time
-  // First threshold (when to switch from section 1 to 2): decreased from 0.3 to 0.25
-  // Second threshold (when to switch from section 2 to 3): increased from 0.7 to 0.85
-  // This creates a much longer active period for the second section
-  const thresholds = useMemo(() => [0.25, 0.85], []);
+  // Simple scroll thresholds for section switching
+  const thresholds = useMemo(() => [0.33, 0.66], []); // Switch at 33% and 66% scroll
 
   // Handle scroll events
   useEffect(() => {
@@ -55,15 +52,16 @@ export default function About() {
       );
       setScrollPosition(scrollPercentage);
 
-      // Determine active section using the thresholds
-      const normalizedScrollPosition = scrollPos / containerHeight;
+      // Calculate normalized scroll position (0-1)
+      const normalizedScrollPosition = scrollPercentage / 100;
 
+      // Determine which section should be active
       if (normalizedScrollPosition < thresholds[0]) {
-        setActiveSection(0);
+        setActiveSection(0); // First section
       } else if (normalizedScrollPosition < thresholds[1]) {
-        setActiveSection(1);
+        setActiveSection(1); // Second section  
       } else {
-        setActiveSection(2);
+        setActiveSection(2); // Third section
       }
     };
 

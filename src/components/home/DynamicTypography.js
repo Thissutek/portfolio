@@ -112,7 +112,7 @@ const DynamicTypography = () => {
       <div className="relative mb-4">
         {/* Hidden placeholder to reserve space */}
         <h1
-          className="text-5xl lg:text-6xl font-bold tracking-tight invisible absolute inset-0"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight invisible absolute inset-0"
           aria-hidden="true"
         >
           Jonathan Yau
@@ -120,7 +120,7 @@ const DynamicTypography = () => {
         
         {/* Visible animated text */}
         <h1
-          className="text-5xl lg:text-6xl font-bold tracking-tight relative"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight relative"
           style={{
             background: `linear-gradient(135deg, ${colors.text} 0%, ${colors.lavender} 50%, ${colors.blue} 100%)`,
             WebkitBackgroundClip: "text",
@@ -175,7 +175,7 @@ const DynamicTypography = () => {
       <div className="relative mb-6 h-12">
         {/* Hidden placeholder to reserve space for longest role */}
         <h2
-          className="text-2xl lg:text-3xl font-medium invisible absolute inset-0"
+          className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium invisible absolute inset-0"
           aria-hidden="true"
         >
           Full Stack Engineer|
@@ -183,7 +183,7 @@ const DynamicTypography = () => {
         
         {/* Visible animated text */}
         <h2
-          className="text-2xl lg:text-3xl font-medium absolute inset-0"
+          className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium absolute inset-0"
           style={{ 
             color: colors.peach,
             textShadow: `0 0 20px ${colors.peach}40`,
@@ -223,7 +223,7 @@ const DynamicTypography = () => {
         }}
       >
         <p
-          className="text-lg leading-relaxed max-w-2xl"
+          className="text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl"
           style={{ color: colors.subtext }}
         >
           <span className="inline-block">
