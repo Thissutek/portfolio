@@ -8,6 +8,28 @@ import ProjectCard from "../ui/ProjectCard";
 const projects = [
   {
     id: 1,
+    title: "Savyr",
+    description:
+      "An AI-powered meal planning mobile app I developed that transforms grocery flyers into personalized weekly meal plans. Built the complete mobile application from concept to App Store deployment, implementing intelligent parsing and meal suggestion algorithms.",
+    imageSrc: "/imgs/appstore.png",
+    accentColor: colors.yellow,
+    technologies: ["React Native", "Expo", "Supabase", "Tailwind", "iOS", "Android"],
+    projectUrl: "https://apps.apple.com/us/app/savyr/id6748922640",
+    contractProject: true,
+    isLogo: true,
+  },
+  // {
+  //   id: 2,
+  //   title: "Nota",
+  //   description:
+  //     "An intelligent Chrome extension for seamless note-taking with AI-powered features. Highlight any webpage content and instantly add it to your notes with automatic source linking, enhanced by Deepgram's speech-to-text and text-to-speech capabilities.",
+  //   imageSrc: "/imgs/nota.png",
+  //   accentColor: colors.blue,
+  //   technologies: ["React", "Vite", "Tailwind", "Firebase", "Chrome Extension", "Deepgram"],
+  //   projectUrl: "https://chrome.google.com/webstore/detail/nota",
+  // },
+  {
+    id: 3,
     title: "NeuroMatch AI-powered talent matching",
     description:
       "An AI-powered talent matching MVP built with Next.js and Supabase—parsing resumes and interview responses to intelligently rank candidates in real time",
@@ -22,9 +44,10 @@ const projects = [
       "Tailwind",
     ],
     projectUrl: "https://ai-talent-match.vercel.app/",
+    hackathonWinner: true,
   },
   {
-    id: 2,
+    id: 4,
     title: "Aims2Learn",
     description:
       "A sleek, React-powered tutor portfolio built with Vite and Tailwind—showcasing services, rates, and offering a seamless way for students to get in touch.",
@@ -32,9 +55,10 @@ const projects = [
     accentColor: colors.maroon,
     technologies: ["React", "Vite", "Tailwind"],
     projectUrl: "https://www.aims2learn.com/",
+    contractProject: true,
   },
   {
-    id: 3,
+    id: 5,
     title: "E-Commerce Modern Web Application",
     description:
       "A full-stack modern e-commerce store built for performance and scalability—featuring smooth UI, dynamic product management, and secure checkout",
@@ -42,16 +66,18 @@ const projects = [
     accentColor: colors.peach,
     technologies: ["React", "Node.js", "Express", "PostgreSQL"],
     projectUrl: "https://github.com/Thissutek/my-ecommerce-app",
+    personalProject: true,
   },
   {
-    id: 3,
+    id: 6,
     title: "Alfred Assistant Discord Bot",
     description:
-      "A full-stack modern e-commerce store built for performance and scalability—featuring smooth UI, dynamic product management, and secure checkout",
+      "A versatile Discord bot built with Node.js and Express—featuring automated moderation, custom commands, and seamless server management capabilities",
     imageSrc: "/imgs/discord-bot.png",
     accentColor: colors.teal,
     technologies: ["Node.js", "Express", "Javascript"],
     projectUrl: "https://github.com/Thissutek/discord-bot",
+    personalProject: true,
   },
 ];
 
@@ -71,24 +97,36 @@ const ProjectList = () => {
 
   return (
     <div
-      className={`lg:w-3/5 ${styles.fadeIn} ${showProjects ? styles.fadeInVisible : styles.fadeInHidden}`}
-      style={{ transitionDelay: "0.4s" }}
+      className={`w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 ${styles.fadeIn} ${showProjects ? styles.fadeInVisible : styles.fadeInHidden} relative`}
+      style={{ transitionDelay: "0.4s", zIndex: 60 }}
     >
-      <h2 className="text-2xl font-bold mb-6" style={{ color: colors.text }}>
+      <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6" style={{ color: colors.text }}>
         Featured Projects
       </h2>
 
-      <div className="space-y-4">
-        {projects.map((project) => (
-          <ProjectCard
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-6">
+        {projects.map((project, index) => (
+          <div
             key={project.id}
-            title={project.title}
-            description={project.description}
-            imageSrc={project.imageSrc}
-            accentColor={project.accentColor}
-            technologies={project.technologies}
-            projectUrl={project.projectUrl}
-          />
+            className="animate-fadeInUp h-full"
+            style={{ 
+              animationDelay: `${index * 0.1}s`,
+              animationFillMode: 'both'
+            }}
+          >
+            <ProjectCard
+              title={project.title}
+              description={project.description}
+              imageSrc={project.imageSrc}
+              accentColor={project.accentColor}
+              technologies={project.technologies}
+              projectUrl={project.projectUrl}
+              contractProject={project.contractProject}
+              hackathonWinner={project.hackathonWinner}
+              personalProject={project.personalProject}
+              isLogo={project.isLogo}
+            />
+          </div>
         ))}
       </div>
     </div>
