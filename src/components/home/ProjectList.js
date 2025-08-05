@@ -10,22 +10,24 @@ const projects = [
     id: 1,
     title: "Savyr",
     description:
-      "An AI-powered meal planning mobile app that transforms grocery flyers into personalized weekly meal plans. Snap a photo of any flyer and watch as intelligent parsing creates tailored meal suggestions optimized for your preferences and budget.",
-    imageSrc: "/imgs/savyr.png",
+      "An AI-powered meal planning mobile app I developed that transforms grocery flyers into personalized weekly meal plans. Built the complete mobile application from concept to App Store deployment, implementing intelligent parsing and meal suggestion algorithms.",
+    imageSrc: "/imgs/appstore.png",
     accentColor: colors.yellow,
     technologies: ["React Native", "Expo", "Supabase", "Tailwind", "iOS", "Android"],
-    projectUrl: "https://apps.apple.com/app/savyr",
+    projectUrl: "https://apps.apple.com/us/app/savyr/id6748922640",
+    contractProject: true,
+    isLogo: true,
   },
-  {
-    id: 2,
-    title: "Nota",
-    description:
-      "An intelligent Chrome extension for seamless note-taking with AI-powered features. Highlight any webpage content and instantly add it to your notes with automatic source linking, enhanced by Deepgram's speech-to-text and text-to-speech capabilities.",
-    imageSrc: "/imgs/nota.png",
-    accentColor: colors.blue,
-    technologies: ["React", "Vite", "Tailwind", "Firebase", "Chrome Extension", "Deepgram"],
-    projectUrl: "https://chrome.google.com/webstore/detail/nota",
-  },
+  // {
+  //   id: 2,
+  //   title: "Nota",
+  //   description:
+  //     "An intelligent Chrome extension for seamless note-taking with AI-powered features. Highlight any webpage content and instantly add it to your notes with automatic source linking, enhanced by Deepgram's speech-to-text and text-to-speech capabilities.",
+  //   imageSrc: "/imgs/nota.png",
+  //   accentColor: colors.blue,
+  //   technologies: ["React", "Vite", "Tailwind", "Firebase", "Chrome Extension", "Deepgram"],
+  //   projectUrl: "https://chrome.google.com/webstore/detail/nota",
+  // },
   {
     id: 3,
     title: "NeuroMatch AI-powered talent matching",
@@ -42,6 +44,7 @@ const projects = [
       "Tailwind",
     ],
     projectUrl: "https://ai-talent-match.vercel.app/",
+    hackathonWinner: true,
   },
   {
     id: 4,
@@ -52,6 +55,7 @@ const projects = [
     accentColor: colors.maroon,
     technologies: ["React", "Vite", "Tailwind"],
     projectUrl: "https://www.aims2learn.com/",
+    contractProject: true,
   },
   {
     id: 5,
@@ -62,6 +66,7 @@ const projects = [
     accentColor: colors.peach,
     technologies: ["React", "Node.js", "Express", "PostgreSQL"],
     projectUrl: "https://github.com/Thissutek/my-ecommerce-app",
+    personalProject: true,
   },
   {
     id: 6,
@@ -72,6 +77,7 @@ const projects = [
     accentColor: colors.teal,
     technologies: ["Node.js", "Express", "Javascript"],
     projectUrl: "https://github.com/Thissutek/discord-bot",
+    personalProject: true,
   },
 ];
 
@@ -115,6 +121,10 @@ const ProjectList = () => {
               accentColor={project.accentColor}
               technologies={project.technologies}
               projectUrl={project.projectUrl}
+              contractProject={project.contractProject}
+              hackathonWinner={project.hackathonWinner}
+              personalProject={project.personalProject}
+              isLogo={project.isLogo}
             />
           </div>
         ))}

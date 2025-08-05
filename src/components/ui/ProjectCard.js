@@ -14,6 +14,10 @@ const ProjectCard = ({
   accentColor,
   technologies = [],
   projectUrl = "#",
+  contractProject = false,
+  hackathonWinner = false,
+  personalProject = false,
+  isLogo = false,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -64,18 +68,38 @@ const ProjectCard = ({
       {/* Project Image with enhanced styling */}
       <div className="relative h-40 overflow-hidden">
         {imageSrc ? (
-          <Image
-            src={imageSrc}
-            alt={title}
-            width={400}
-            height={240}
-            className="w-full h-full object-cover"
-            style={{
-              transform: isHovered ? 'scale(1.05)' : 'scale(1)',
-              transition: 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-              willChange: 'transform'
-            }}
-          />
+          isLogo ? (
+            <div 
+              className="w-full h-full flex items-center justify-center"
+              style={{ backgroundColor: `${colors.surface}80` }}
+            >
+              <Image
+                src={imageSrc}
+                alt={title}
+                width={80}
+                height={80}
+                className="object-contain"
+                style={{
+                  transform: isHovered ? 'scale(1.1)' : 'scale(1)',
+                  transition: 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                  willChange: 'transform'
+                }}
+              />
+            </div>
+          ) : (
+            <Image
+              src={imageSrc}
+              alt={title}
+              width={400}
+              height={240}
+              className="w-full h-full object-cover"
+              style={{
+                transform: isHovered ? 'scale(1.05)' : 'scale(1)',
+                transition: 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                willChange: 'transform'
+              }}
+            />
+          )
         ) : (
           <div 
             className="w-full h-full flex items-center justify-center"
@@ -92,6 +116,52 @@ const ProjectCard = ({
             background: `linear-gradient(180deg, transparent 0%, ${colors.base}20 50%, ${colors.base}60 100%)`
           }}
         />
+        
+        {/* Project Tags */}
+        {contractProject && (
+          <div 
+            className="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold"
+            style={{
+              background: `${colors.surface}95`,
+              backdropFilter: "blur(10px)",
+              border: `1px solid ${accentColor}50`,
+              color: accentColor,
+              textShadow: `0 1px 2px ${colors.base}50`,
+            }}
+          >
+            Contract Project
+          </div>
+        )}
+        
+        {hackathonWinner && (
+          <div 
+            className="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold"
+            style={{
+              background: `${colors.surface}95`,
+              backdropFilter: "blur(10px)",
+              border: `1px solid ${accentColor}50`,
+              color: accentColor,
+              textShadow: `0 1px 2px ${colors.base}50`,
+            }}
+          >
+            Hackathon Winner
+          </div>
+        )}
+        
+        {personalProject && (
+          <div 
+            className="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold"
+            style={{
+              background: `${colors.surface}95`,
+              backdropFilter: "blur(10px)",
+              border: `1px solid ${accentColor}50`,
+              color: accentColor,
+              textShadow: `0 1px 2px ${colors.base}50`,
+            }}
+          >
+            Personal Project
+          </div>
+        )}
         
         {/* Floating action button */}
         <a
@@ -152,7 +222,7 @@ const ProjectCard = ({
         )}
 
         <p 
-          className="text-xs md:text-sm leading-relaxed flex-1"
+          className="text-xs md:text-sm leading-relaxed"
           style={{ 
             color: isHovered ? colors.subtext : `${colors.subtext}CC`,
             transition: 'color 0.3s ease-out'
@@ -160,6 +230,22 @@ const ProjectCard = ({
         >
           {description}
         </p>
+        
+        {/* Contract Project Disclaimer */}
+        {contractProject && (
+          <p 
+            className="text-xs mt-2 italic"
+            style={{ 
+              color: `${colors.subtext}80`,
+              fontSize: '0.65rem'
+            }}
+          >
+            * Professional work completed for client. IP rights belong to client.
+          </p>
+        )}
+        
+        {/* Spacer for flex layout */}
+        <div className="flex-1"></div>
         
         {/* Bottom accent border */}
         <div 
