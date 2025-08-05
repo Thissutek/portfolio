@@ -18,16 +18,17 @@ const projects = [
     contractProject: true,
     isLogo: true,
   },
-  // {
-  //   id: 2,
-  //   title: "Nota",
-  //   description:
-  //     "An intelligent Chrome extension for seamless note-taking with AI-powered features. Highlight any webpage content and instantly add it to your notes with automatic source linking, enhanced by Deepgram's speech-to-text and text-to-speech capabilities.",
-  //   imageSrc: "/imgs/nota.png",
-  //   accentColor: colors.blue,
-  //   technologies: ["React", "Vite", "Tailwind", "Firebase", "Chrome Extension", "Deepgram"],
-  //   projectUrl: "https://chrome.google.com/webstore/detail/nota",
-  // },
+  {
+    id: 2,
+    title: "Note Taking Chrome Extension",
+    description:
+      "Developed a Chrome extension featuring intelligent note-taking functionality with AI-powered capabilities. Built the complete technical implementation including webpage content highlighting, automated source linking, and integrated speech-to-text and text-to-speech features using Deepgram API.",
+    imageSrc: "/imgs/note-taking.png",
+    accentColor: colors.blue,
+    technologies: ["React", "Vite", "Tailwind", "Firebase", "Chrome Extension", "Deepgram"],
+    projectUrl: "https://www.loom.com/share/503d5386e78c4451b0b69aee6486a3c5?sid=c81f1e25-837a-44fa-afd8-033b5b5d34cd",
+    contractProject: true,
+  },
   {
     id: 3,
     title: "NeuroMatch AI-powered talent matching",
