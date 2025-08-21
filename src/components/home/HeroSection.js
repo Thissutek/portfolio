@@ -51,8 +51,8 @@ const HeroSection = () => {
     },
     { 
       id: 6,
-      src: "/videos/live-coding.mp4", 
-      title: "Live Coding Session",
+      src: "/videos/Project delivery.mp4", 
+      title: "Project Delivery",
       category: "Development",
       size: "small",
       thumbnail: "/imgs/live-coding.jpg"
@@ -176,22 +176,7 @@ const HeroSection = () => {
               }}
             />
             
-            {/* Tile Number Label */}
-            <div 
-              className="absolute top-2 left-2 w-8 h-8 rounded-full backdrop-blur-md border flex items-center justify-center z-20"
-              style={{
-                backgroundColor: `${colors.lavender}88`,
-                borderColor: `${colors.lavender}aa`,
-                backdropFilter: "blur(12px)"
-              }}
-            >
-              <span 
-                className="text-sm font-bold"
-                style={{ color: colors.base }}
-              >
-                {video.id}
-              </span>
-            </div>
+
 
             {/* Video Info with Glassmorphism */}
             <div 
