@@ -1,11 +1,4 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  eslint: {
-    // Disable specific rules during build
-    rules: {
-      'react/no-unescaped-entities': 'off'
-    }
-  }
-};
+const nextConfig = {};
 
 export default nextConfig;
