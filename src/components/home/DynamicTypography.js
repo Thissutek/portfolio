@@ -16,8 +16,8 @@ const DynamicTypography = () => {
 
   const fullName = "Jonathan Yau";
   const roles = useMemo(() => [
-    "Full Stack Engineer",
-    "Animator"
+    "Full Stack Developer",
+    "Building products users love"
   ], []);
 
   // Typewriter effect for name
@@ -227,12 +227,12 @@ const DynamicTypography = () => {
           style={{ color: colors.subtext }}
         >
           <span className="inline-block">
-            {showMainText && "I'm a full-stack developer who specializes in ".split('').map((char, index) => (
+            {showMainText && "10+ years of performance discipline → OCAD animation training → Full Stack Development. I write ".split('').map((char, index) => (
               <span
                 key={index}
                 className="inline-block animate-fadeInUp"
                 style={{
-                  animationDelay: `${1.5 + index * 0.03}s`,
+                  animationDelay: `${1.5 + index * 0.02}s`,
                   animationFillMode: 'both'
                 }}
               >
@@ -248,15 +248,15 @@ const DynamicTypography = () => {
               border: `1px solid ${colors.lavender}30`,
             }}
           >
-            animation
+            code that moves people
           </span>
           <span className="inline-block">
-            {showMainText && ", creating intuitive digital experiences that feel as smooth as they function.".split('').map((char, index) => (
+            {showMainText && ".".split('').map((char, index) => (
               <span
-                key={index + 100}
+                key={index + 200}
                 className="inline-block animate-fadeInUp"
                 style={{
-                  animationDelay: `${2.2 + index * 0.03}s`,
+                  animationDelay: `${2.8 + index * 0.03}s`,
                   animationFillMode: 'both'
                 }}
               >
