@@ -19,9 +19,9 @@ const HeroSection = () => {
     },
     { 
       id: 2,
-      src: "/videos/coding-react.mp4", 
-      title: "React Development",
-      category: "Development",
+      src: "/videos/dance-5.mp4", 
+      title: "Dance Performance 5",
+      category: "Performance",
       size: "medium",
       thumbnail: "/imgs/coding-react.jpg"
     },
@@ -43,9 +43,9 @@ const HeroSection = () => {
     },
     { 
       id: 5,
-      src: "/videos/dance-contemporary.mp4", 
-      title: "Contemporary Dance",
-      category: "Performance",
+      src: "/videos/dev-2.mov", 
+      title: "Development Project 2",
+      category: "Development",
       size: "large",
       thumbnail: "/imgs/animation-work.jpg"
     },
@@ -59,19 +59,19 @@ const HeroSection = () => {
     },
     { 
       id: 7,
-      src: "/videos/dance-battle.mp4", 
-      title: "Dance Battle",
-      category: "Performance",
+      src: "/videos/dev-1.mp4", 
+      title: "Development Project 1",
+      category: "Development",
       size: "medium",
       thumbnail: "/imgs/dance-battle.jpg"
     },
     { 
       id: 8,
-      src: "/videos/ux-design.mp4", 
-      title: "UX Design Process",
-      category: "Design",
+      src: "/videos/Course-video.mp4", 
+      title: "Course Content",
+      category: "Education",
       size: "small",
-      thumbnail: "/imgs/ux-design.jpg"
+      thumbnail: "/imgs/ai-course.jpg"
     }
   ];
 
@@ -110,31 +110,58 @@ const HeroSection = () => {
             onMouseEnter={() => setHoveredVideo(video.id)}
             onMouseLeave={() => setHoveredVideo(null)}
           >
-            {/* Video Element */}
-            <video
-              className="absolute inset-2 w-full h-full rounded-xl object-cover transition-all duration-700 group-hover:scale-105"
-              autoPlay
-              muted
-              playsInline
-              onTimeUpdate={(e) => {
-                if (e.target.currentTime >= 20) {
+            {/* Video Element or Placeholder */}
+            {video.src ? (
+              <video
+                className="absolute inset-2 w-full h-full rounded-xl object-cover transition-all duration-700 group-hover:scale-105"
+                autoPlay
+                muted
+                playsInline
+                onTimeUpdate={(e) => {
+                  if (e.target.currentTime >= 20) {
+                    e.target.currentTime = 0;
+                  }
+                }}
+                onEnded={(e) => {
                   e.target.currentTime = 0;
-                }
-              }}
-              onEnded={(e) => {
-                e.target.currentTime = 0;
-                e.target.play();
-              }}
-              style={{
-                filter: hoveredVideo === video.id ? "brightness(1.1) contrast(1.05) saturate(1.1)" : "brightness(0.8) saturate(0.9)",
-                left: "4px",
-                right: "4px", 
-                top: "4px",
-                bottom: "4px"
-              }}
-            >
-              <source src={video.src} type="video/mp4" />
-            </video>
+                  e.target.play();
+                }}
+                style={{
+                  filter: hoveredVideo === video.id ? "brightness(1.1) contrast(1.05) saturate(1.1)" : "brightness(0.8) saturate(0.9)",
+                  left: "4px",
+                  right: "4px", 
+                  top: "4px",
+                  bottom: "4px"
+                }}
+              >
+                <source src={video.src} type="video/mp4" />
+              </video>
+            ) : (
+              // Placeholder for tiles without videos
+              <div 
+                className="absolute inset-2 w-full h-full rounded-xl flex items-center justify-center transition-all duration-700 group-hover:scale-105"
+                style={{
+                  background: `linear-gradient(135deg, ${colors.surface}80 0%, ${colors.overlay}40 100%)`,
+                  backdropFilter: "blur(10px)",
+                  border: `1px solid ${colors.overlay}30`
+                }}
+              >
+                <div className="text-center">
+                  <div 
+                    className="text-4xl mb-2 opacity-60"
+                    style={{ color: colors.lavender }}
+                  >
+                    📹
+                  </div>
+                  <div 
+                    className="text-sm font-medium opacity-80"
+                    style={{ color: colors.text }}
+                  >
+                    Coming Soon
+                  </div>
+                </div>
+              </div>
+            )}
             
             {/* Glassmorphism Overlay */}
             <div 
