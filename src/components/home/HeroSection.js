@@ -126,11 +126,11 @@ const HeroSection = () => {
                 e.target.play();
               }}
               style={{
-                filter: hoveredVideo === video.id ? 'brightness(1.1) contrast(1.05) saturate(1.1)' : 'brightness(0.8) saturate(0.9)',
-                left: '4px',
-                right: '4px', 
-                top: '4px',
-                bottom: '4px'
+                filter: hoveredVideo === video.id ? "brightness(1.1) contrast(1.05) saturate(1.1)" : "brightness(0.8) saturate(0.9)",
+                left: "4px",
+                right: "4px", 
+                top: "4px",
+                bottom: "4px"
               }}
             >
               <source src={video.src} type="video/mp4" />
@@ -140,11 +140,11 @@ const HeroSection = () => {
             <div 
               className={`absolute inset-2 rounded-xl transition-all duration-500 ${
                 hoveredVideo === video.id 
-                ? 'bg-gradient-to-t from-black/60 via-transparent to-transparent backdrop-blur-sm' 
-                : 'bg-gradient-to-br from-white/10 via-transparent to-black/20'
+                ? "bg-gradient-to-t from-black/60 via-transparent to-transparent backdrop-blur-sm" 
+                : "bg-gradient-to-br from-white/10 via-transparent to-black/20"
               }`}
               style={{
-                backdropFilter: hoveredVideo === video.id ? 'blur(2px)' : 'blur(1px)',
+                backdropFilter: hoveredVideo === video.id ? "blur(2px)" : "blur(1px)",
                 border: hoveredVideo === video.id ? `1px solid ${colors.lavender}44` : `1px solid ${colors.overlay}11`
               }}
             />
@@ -155,7 +155,7 @@ const HeroSection = () => {
               style={{
                 backgroundColor: `${colors.lavender}88`,
                 borderColor: `${colors.lavender}aa`,
-                backdropFilter: 'blur(12px)'
+                backdropFilter: "blur(12px)"
               }}
             >
               <span 
@@ -169,12 +169,12 @@ const HeroSection = () => {
             {/* Video Info with Glassmorphism */}
             <div 
               className={`absolute bottom-2 left-2 right-2 p-3 rounded-lg backdrop-blur-md border transform transition-all duration-500 ${
-                hoveredVideo === video.id ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
+                hoveredVideo === video.id ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
               }`}
               style={{
                 backgroundColor: `${colors.base}77`,
                 borderColor: `${colors.overlay}33`,
-                backdropFilter: 'blur(16px)'
+                backdropFilter: "blur(16px)"
               }}
             >
               <div 
@@ -202,7 +202,7 @@ const HeroSection = () => {
               transparent 30%, 
               transparent 70%, 
               ${colors.base}33 100%)`,
-            backdropFilter: 'blur(2px)'
+            backdropFilter: "blur(2px)"
           }}
         />
       </div>
@@ -221,9 +221,9 @@ const HeroSection = () => {
               className="text-7xl lg:text-9xl font-black mb-8 leading-none"
               style={{
                 background: `linear-gradient(135deg, ${colors.lavender}, ${colors.blue}, ${colors.peach})`,
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                textShadow: '0 0 40px rgba(180, 190, 254, 0.3)'
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                textShadow: "0 0 40px rgba(180, 190, 254, 0.3)"
               }}
             >
               JONATHAN YAU
@@ -234,7 +234,7 @@ const HeroSection = () => {
                 className="text-2xl lg:text-5xl font-light tracking-wider"
                 style={{ 
                   color: colors.text,
-                  textShadow: '0 2px 20px rgba(0,0,0,0.8)'
+                  textShadow: "0 2px 20px rgba(0,0,0,0.8)"
                 }}
               >
                 Developer &bull; Dancer &bull; Creator
@@ -337,9 +337,9 @@ const HeroSection = () => {
                 style={{
                   borderColor: colors.blue,
                   color: colors.blue,
-                  backgroundColor: 'transparent'
+                  backgroundColor: "transparent"
                 }}
-                onClick={() => window.open('/contact', '_self')}
+                onClick={() => window.open("/contact", "_self")}
               >
                 Let&apos;s Create Together
               </button>
