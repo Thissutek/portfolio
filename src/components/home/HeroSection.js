@@ -237,7 +237,7 @@ const HeroSection = () => {
                   textShadow: '0 2px 20px rgba(0,0,0,0.8)'
                 }}
               >
-                Developer • Dancer • Creator
+                Developer &bull; Dancer &bull; Creator
               </h2>
             </div>
           </div>
@@ -253,7 +253,7 @@ const HeroSection = () => {
                 { 
                   title: "10+ Years", 
                   subtitle: "Professional Dance", 
-                  description: "Stage performance & choreography",
+                  description: "Stage performance &amp; choreography",
                   color: colors.peach,
                   bgColor: colors.peach
                 },
@@ -341,7 +341,7 @@ const HeroSection = () => {
                 }}
                 onClick={() => window.open('/contact', '_self')}
               >
-                Let's Create Together
+                Let&apos;s Create Together
               </button>
             </div>
           </div>
