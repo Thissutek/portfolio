@@ -11,8 +11,8 @@ const HeroSection = () => {
   const videoMosaic = [
     { 
       id: 1,
-      src: "/videos/dance-contemporary.mp4", 
-      title: "Contemporary Dance",
+      src: "/videos/dance-4.mp4", 
+      title: "Dance Performance 4",
       category: "Performance",
       size: "large",
       thumbnail: "/imgs/dance-contemporary.jpg"
@@ -27,25 +27,25 @@ const HeroSection = () => {
     },
     { 
       id: 3,
-      src: "/videos/ai-course-intro.mp4", 
-      title: "AI Course Creation",
-      category: "Teaching",
+      src: "/videos/dance-1.mp4", 
+      title: "Dance Performance 1",
+      category: "Performance",
       size: "small",
       thumbnail: "/imgs/ai-course.jpg"
     },
     { 
       id: 4,
-      src: "/videos/dance-hiphop.mp4", 
-      title: "Hip-Hop Choreography",
+      src: "/videos/dance-3.mp4", 
+      title: "Dance Performance 3",
       category: "Performance",
       size: "medium",
       thumbnail: "/imgs/dance-hiphop.jpg"
     },
     { 
       id: 5,
-      src: "/videos/animation-work.mp4", 
-      title: "Animation Projects",
-      category: "Design",
+      src: "/videos/dance-contemporary.mp4", 
+      title: "Contemporary Dance",
+      category: "Performance",
       size: "large",
       thumbnail: "/imgs/animation-work.jpg"
     },
@@ -112,11 +112,19 @@ const HeroSection = () => {
           >
             {/* Video Element */}
             <video
-              className="absolute inset-2 w-auto h-auto rounded-xl object-cover transition-all duration-700 group-hover:scale-105"
+              className="absolute inset-2 w-full h-full rounded-xl object-cover transition-all duration-700 group-hover:scale-105"
               autoPlay
-              loop
               muted
               playsInline
+              onTimeUpdate={(e) => {
+                if (e.target.currentTime >= 20) {
+                  e.target.currentTime = 0;
+                }
+              }}
+              onEnded={(e) => {
+                e.target.currentTime = 0;
+                e.target.play();
+              }}
               style={{
                 filter: hoveredVideo === video.id ? 'brightness(1.1) contrast(1.05) saturate(1.1)' : 'brightness(0.8) saturate(0.9)',
                 left: '4px',
@@ -141,6 +149,23 @@ const HeroSection = () => {
               }}
             />
             
+            {/* Tile Number Label */}
+            <div 
+              className="absolute top-2 left-2 w-8 h-8 rounded-full backdrop-blur-md border flex items-center justify-center z-20"
+              style={{
+                backgroundColor: `${colors.lavender}88`,
+                borderColor: `${colors.lavender}aa`,
+                backdropFilter: 'blur(12px)'
+              }}
+            >
+              <span 
+                className="text-sm font-bold"
+                style={{ color: colors.base }}
+              >
+                {video.id}
+              </span>
+            </div>
+
             {/* Video Info with Glassmorphism */}
             <div 
               className={`absolute bottom-2 left-2 right-2 p-3 rounded-lg backdrop-blur-md border transform transition-all duration-500 ${
@@ -225,22 +250,40 @@ const HeroSection = () => {
           >
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
               {[
-                { title: "10+ Years", subtitle: "Professional Dance", description: "Stage performance & choreography" },
-                { title: "OCAD Graduate", subtitle: "Animation Degree", description: "Visual storytelling expertise" },
-                { title: "Full-Stack", subtitle: "Software Developer", description: "Modern web technologies" }
+                { 
+                  title: "10+ Years", 
+                  subtitle: "Professional Dance", 
+                  description: "Stage performance & choreography",
+                  color: colors.peach,
+                  bgColor: colors.peach
+                },
+                { 
+                  title: "OCAD Graduate", 
+                  subtitle: "Animation Degree", 
+                  description: "Visual storytelling expertise",
+                  color: colors.lavender,
+                  bgColor: colors.lavender
+                },
+                { 
+                  title: "Full-Stack", 
+                  subtitle: "Software Developer", 
+                  description: "Modern web technologies",
+                  color: colors.green,
+                  bgColor: colors.green
+                }
               ].map((item, index) => (
                 <div 
                   key={index}
                   className="relative backdrop-blur-xl border border-opacity-20 rounded-2xl p-8 transition-all duration-500 hover:scale-105 group"
                   style={{
-                    backgroundColor: `${colors.surface}22`,
-                    borderColor: colors.overlay,
+                    backgroundColor: `${item.bgColor}11`,
+                    borderColor: `${item.color}44`,
                     animationDelay: `${1200 + index * 200}ms`
                   }}
                 >
                   <div 
                     className="text-3xl lg:text-4xl font-bold mb-2"
-                    style={{ color: colors.lavender }}
+                    style={{ color: item.color }}
                   >
                     {item.title}
                   </div>
@@ -261,7 +304,7 @@ const HeroSection = () => {
                   <div 
                     className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-30 transition-opacity duration-500"
                     style={{
-                      background: `linear-gradient(45deg, ${colors.lavender}33, ${colors.blue}33)`
+                      background: `linear-gradient(45deg, ${item.color}33, ${item.color}55)`
                     }}
                   />
                 </div>
