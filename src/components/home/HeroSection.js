@@ -7,11 +7,11 @@ const HeroSection = () => {
   const [hoveredVideo, setHoveredVideo] = useState(null);
   const mosaicRef = useRef();
 
-  // Video mosaic data - replace with your actual videos
+  // Video mosaic data - using optimized WebM videos
   const videoMosaic = [
     { 
       id: 1,
-      src: "/videos/dance-4.mp4", 
+      src: "/videos/webm/dance-4.webm", 
       title: "Dance Performance 4",
       category: "Performance",
       size: "large",
@@ -19,7 +19,7 @@ const HeroSection = () => {
     },
     { 
       id: 2,
-      src: "/videos/dance-5.mp4", 
+      src: "/videos/webm/dance-5.webm", 
       title: "Dance Performance 5",
       category: "Performance",
       size: "medium",
@@ -27,7 +27,7 @@ const HeroSection = () => {
     },
     { 
       id: 3,
-      src: "/videos/dance-1.mp4", 
+      src: "/videos/webm/dance-1.webm", 
       title: "Dance Performance 1",
       category: "Performance",
       size: "small",
@@ -35,7 +35,7 @@ const HeroSection = () => {
     },
     { 
       id: 4,
-      src: "/videos/dance-3.mp4", 
+      src: "/videos/webm/dance-3.webm", 
       title: "Dance Performance 3",
       category: "Performance",
       size: "medium",
@@ -43,7 +43,7 @@ const HeroSection = () => {
     },
     { 
       id: 5,
-      src: "/videos/dev-2.mov", 
+      src: "/videos/webm/dev-2.webm", 
       title: "Development Project 2",
       category: "Development",
       size: "large",
@@ -51,7 +51,7 @@ const HeroSection = () => {
     },
     { 
       id: 6,
-      src: "/videos/Project delivery.mp4", 
+      src: "/videos/webm/Project delivery.webm", 
       title: "Project Delivery",
       category: "Development",
       size: "small",
@@ -59,7 +59,7 @@ const HeroSection = () => {
     },
     { 
       id: 7,
-      src: "/videos/dev-1.mp4", 
+      src: "/videos/webm/dev-1.webm", 
       title: "Development Project 1",
       category: "Development",
       size: "medium",
@@ -67,7 +67,7 @@ const HeroSection = () => {
     },
     { 
       id: 8,
-      src: "/videos/Course-video.mp4", 
+      src: "/videos/webm/Course-video.webm", 
       title: "Course Content",
       category: "Education",
       size: "small",
@@ -117,6 +117,7 @@ const HeroSection = () => {
                 autoPlay
                 muted
                 playsInline
+                preload="metadata"
                 onTimeUpdate={(e) => {
                   if (e.target.currentTime >= 20) {
                     e.target.currentTime = 0;
@@ -134,7 +135,7 @@ const HeroSection = () => {
                   bottom: "4px"
                 }}
               >
-                <source src={video.src} type="video/mp4" />
+                <source src={video.src} type="video/webm" />
               </video>
             ) : (
               // Placeholder for tiles without videos
