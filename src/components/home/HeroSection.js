@@ -265,7 +265,7 @@ const HeroSection = () => {
                 { 
                   title: "10+ Years", 
                   subtitle: "Professional Dance", 
-                  description: "Stage performance &amp; choreography",
+                  description: "Stage performance & choreography",
                   color: colors.peach,
                   bgColor: colors.peach
                 },

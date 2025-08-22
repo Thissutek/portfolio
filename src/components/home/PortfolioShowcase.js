@@ -122,61 +122,78 @@ const PortfolioShowcase = () => {
       id: 1,
       category: "dance",
       type: "video",
-      title: "Contemporary Solo",
-      description: "Emotional storytelling through movement and expression",
-      thumbnail: "/imgs/contemporary-solo.jpg",
-      video: "/videos/contemporary-solo.mp4",
-      tags: ["Contemporary", "Solo", "Storytelling"]
+      title: "Studio North Class",
+      description: "A class I taught at Studio North Toronto",
+      thumbnail: "/imgs/dance-reel-1.jpg",
+      video: "/videos/choreography-reel.mp4",
+      youtubeUrl: "https://youtu.be/4QGX-8akg1o?si=LfgteQLA9zcZuzKL",
+      tags: ["Teaching", "Studio North", "Toronto", "Class"]
     },
     {
       id: 2,
       category: "dance",
       type: "video",
-      title: "Hip-Hop Freestyle",
-      description: "Raw energy and improvisation in urban dance culture",
-      thumbnail: "/imgs/hiphop-freestyle.jpg",
-      video: "/videos/hiphop-freestyle.mp4",
-      tags: ["Hip-Hop", "Freestyle", "Urban"]
+      title: "Feel No Ways",
+      description: "Neo renaissance theme concept video with production lighting directors - full day shoot",
+      thumbnail: "/imgs/addo-1.jpg",
+      video: "/videos/feel-no-ways.mp4",
+      youtubeUrl: "https://youtu.be/Ertuk761_gw?si=RcOGpoL1xNDrrHW8",
+      tags: ["Neo Renaissance", "Concept Video", "Production", "Cinematic"]
     },
     {
       id: 3,
       category: "dance",
       type: "video",
-      title: "Jazz Competition",
-      description: "High-energy performance showcasing technical precision",
-      thumbnail: "/imgs/jazz-competition.jpg",
-      video: "/videos/jazz-competition.mp4",
-      tags: ["Jazz", "Competition", "Technical"]
+      title: "Pillar Anthology Series",
+      description: "A four part anthology series depicting the levels of connectivity. Beginning from the initial feeling of igniting the flame, the anxiousness of dropping barriers, the feelings of acceptance, and the reflection of gratitude. Each Pillar project can be enjoyed and understood as its own standalone story, but together comprise one overarching narrative. I was one of the choreographers and I am one of the people who helped storyboard the idea",
+      thumbnail: "/imgs/pillar.jpg",
+      video: "/videos/pillar.mp4",
+      youtubeUrl: "https://youtu.be/2y98nKjEskk?si=S-Ra4QeWOPvIjrFw",
+      tags: ["Anthology", "Choreographer", "Storyboard", "Narrative", "Connectivity"]
     },
     {
       id: 4,
       category: "dance",
       type: "video",
-      title: "Choreography Reel",
-      description: "Original choreographic works spanning multiple styles",
-      thumbnail: "/imgs/choreography-reel.jpg",
-      video: "/videos/choreography-reel.mp4",
-      tags: ["Choreography", "Original", "Multi-Style"]
+      title: "Patchwork",
+      description: "A thematically driven performance exploring the concept of patchwork - where diverse fabric pieces unite to create a singular masterpiece. This show weaves together multiple narratives and movement styles, demonstrating how different stories and artistic elements can harmoniously converge into one cohesive theatrical experience.",
+      thumbnail: "/imgs/patchwork.png",
+      video: "/videos/patchwork.mp4",
+      youtubeUrl: "https://youtu.be/thBSu-FzAy0?si=XZPZxKGD4q6lcpq9",
+      tags: ["Theatrical", "Narrative Fusion", "Conceptual", "Multi-Style", "Thematic"]
     },
     {
       id: 5,
       category: "dance",
       type: "video",
-      title: "Ballroom Partnership",
-      description: "Elegant partnering in ballroom and Latin styles",
-      thumbnail: "/imgs/ballroom-partnership.jpg",
-      video: "/videos/ballroom-partnership.mp4",
-      tags: ["Ballroom", "Partnership", "Elegant"]
+      title: "Legacy Dance Competition 2023",
+      description: "Dance competition performance showcasing technical skill and artistry",
+      thumbnail: "/imgs/onetwous.jpg",
+      video: "/videos/legacy-competition.mp4",
+      youtubeUrl: "https://youtu.be/yvk1S3XrFgk?si=N4lHItCqaaGxVgOz",
+      tags: ["Competition", "2023", "Legacy", "Performance"]
     },
     {
       id: 6,
       category: "dance",
       type: "video",
-      title: "Dance Battle",
-      description: "Competitive freestyle showcasing versatility and style",
-      thumbnail: "/imgs/dance-battle.jpg",
-      video: "/videos/dance-battle.mp4",
-      tags: ["Battle", "Competitive", "Versatile"]
+      title: "R2D 2019 First Place",
+      description: "First place winning performance at R2D competition 2019",
+      thumbnail: "/imgs/memories.png",
+      video: "/videos/r2d-2019.mp4",
+      youtubeUrl: "https://youtu.be/wH_sSPY-Dh0?si=xnLuUhNf7LyMF5BR",
+      tags: ["Competition", "First Place", "R2D", "2019", "Winner"]
+    },
+    {
+      id: 7,
+      category: "dance",
+      type: "video",
+      title: "Prelude 2018 3rd Place",
+      description: "Third place performance at Prelude competition 2018",
+      thumbnail: "/imgs/memories-2.jpg",
+      video: "/videos/prelude-2018.mp4",
+      youtubeUrl: "https://youtu.be/1ziOzLILw74?si=LNkMNf_EUUj9Ue-W",
+      tags: ["Competition", "3rd Place", "Prelude", "2018"]
     }
   ];
 
@@ -303,7 +320,7 @@ const PortfolioShowcase = () => {
           // Vertical Layout
           <div className="h-full flex flex-col">
             <div className={`relative overflow-hidden ${
-              forceFullImage ? 'h-3/4' : 'h-2/3'
+              isDanceMode ? 'aspect-[4/3]' : (forceFullImage ? 'h-3/4' : 'h-2/3')
             }`}>
               <Image
                 src={item.thumbnail}
@@ -426,7 +443,10 @@ const PortfolioShowcase = () => {
   }, []);
 
   const handleItemClick = (item) => {
-    if (item.type === "video") {
+    if (item.youtubeUrl) {
+      // Open YouTube link in new tab
+      window.open(item.youtubeUrl, '_blank');
+    } else if (item.type === "video") {
       // Open video in modal or new tab
       window.open(item.video, '_blank');
     } else {
@@ -750,13 +770,12 @@ const PortfolioShowcase = () => {
           
           {/* Dance Portfolio Layout */}
           {isDanceMode && (
-            <div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
               {danceProjects.map((item, index) => {
                 const isGlass = index % 3 === 0;
                 
-                // Pinterest-style random heights
-                const heights = ['h-64', 'h-72', 'h-80', 'h-96', 'h-56', 'h-[20rem]'];
-                const cardHeight = heights[index % heights.length];
+                // Auto height based on content
+                const cardHeight = 'h-auto';
 
                 return (
                   <ProjectCard 
