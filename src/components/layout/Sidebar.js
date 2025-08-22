@@ -100,14 +100,14 @@ const Navbar = () => {
           <div className="flex items-center justify-center h-full">
             
             {/* Desktop Navigation - All 5 buttons */}
-            <div className="hidden md:flex items-center space-x-8">
+            <div className="hidden md:flex items-center space-x-4 lg:space-x-6 xl:space-x-8">
               {navItems.map((item) => {
                 if (item.isInternal) {
                   return (
                     <Link
                       key={item.id}
                       href={item.path}
-                      className="flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-300 hover:scale-105"
+                      className="flex items-center space-x-2 px-3 lg:px-4 py-2 rounded-lg transition-all duration-300 hover:scale-105"
                       style={{
                         backgroundColor: activePage === item.id ? `${colors.lavender}20` : "transparent",
                         color: activePage === item.id ? colors.lavender : colors.text,
@@ -127,7 +127,7 @@ const Navbar = () => {
                       }}
                     >
                       {item.icon}
-                      <span className="font-medium">{item.text}</span>
+                      <span className="font-medium text-sm lg:text-base">{item.text}</span>
                     </Link>
                   );
                 } else {
@@ -138,7 +138,7 @@ const Navbar = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={item.ariaLabel}
-                      className="flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-300 hover:scale-105"
+                      className="flex items-center space-x-2 px-3 lg:px-4 py-2 rounded-lg transition-all duration-300 hover:scale-105"
                       style={{
                         color: colors.text,
                         border: "1px solid transparent",
@@ -155,7 +155,7 @@ const Navbar = () => {
                       }}
                     >
                       {item.icon}
-                      <span className="font-medium">{item.text}</span>
+                      <span className="font-medium text-sm lg:text-base">{item.text}</span>
                     </a>
                   );
                 }

@@ -89,12 +89,12 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <div className="relative h-screen w-full overflow-hidden">
+    <div className="relative h-screen lg:h-[120vh] xl:h-screen w-full overflow-hidden">
       
       {/* Video Mosaic Background */}
       <div 
         ref={mosaicRef}
-        className="absolute inset-0 z-0 grid grid-cols-4 grid-rows-4 gap-4 p-6"
+        className="absolute inset-0 z-0 grid grid-cols-4 grid-rows-4 gap-4 p-6 mx-8 lg:mx-16 xl:mx-24"
       >
         {videoMosaic.map((video, index) => (
           <div
@@ -230,7 +230,7 @@ const HeroSection = () => {
             }`}
           >
             <h1 
-              className="text-7xl lg:text-9xl font-black mb-8 leading-none"
+              className="text-3xl md:text-4xl lg:text-5xl xl:text-7xl font-black mb-3 lg:mb-4 xl:mb-6 leading-none"
               style={{
                 background: `linear-gradient(135deg, ${colors.lavender}, ${colors.blue}, ${colors.peach})`,
                 WebkitBackgroundClip: "text",
@@ -241,9 +241,9 @@ const HeroSection = () => {
               JONATHAN YAU
             </h1>
             
-            <div className="h-24 mb-12 flex items-center justify-center">
+            <div className="h-8 lg:h-12 xl:h-16 mb-4 lg:mb-6 xl:mb-8 flex items-center justify-center">
               <h2 
-                className="text-2xl lg:text-5xl font-light tracking-wider"
+                className="text-base md:text-lg lg:text-xl xl:text-3xl font-light tracking-wider"
                 style={{ 
                   color: colors.text,
                   textShadow: "0 2px 20px rgba(0,0,0,0.8)"
@@ -260,7 +260,7 @@ const HeroSection = () => {
               isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
             }`}
           >
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 lg:gap-4 xl:gap-6 mb-6 lg:mb-8 xl:mb-12">
               {[
                 { 
                   title: "10+ Years", 
@@ -286,7 +286,7 @@ const HeroSection = () => {
               ].map((item, index) => (
                 <div 
                   key={index}
-                  className="relative backdrop-blur-xl border border-opacity-20 rounded-2xl p-8 transition-all duration-500 hover:scale-105 group"
+                  className="relative backdrop-blur-xl border border-opacity-20 rounded-xl p-3 lg:p-4 xl:p-6 transition-all duration-500 hover:scale-105 group"
                   style={{
                     backgroundColor: `${item.bgColor}11`,
                     borderColor: `${item.color}44`,
@@ -294,19 +294,19 @@ const HeroSection = () => {
                   }}
                 >
                   <div 
-                    className="text-3xl lg:text-4xl font-bold mb-2"
+                    className="text-lg lg:text-xl xl:text-2xl font-bold mb-1 lg:mb-2"
                     style={{ color: item.color }}
                   >
                     {item.title}
                   </div>
                   <div 
-                    className="text-lg font-semibold mb-3"
+                    className="text-xs lg:text-sm xl:text-base font-semibold mb-1 lg:mb-2"
                     style={{ color: colors.text }}
                   >
                     {item.subtitle}
                   </div>
                   <div 
-                    className="text-sm opacity-90"
+                    className="text-xs opacity-90"
                     style={{ color: colors.subtext }}
                   >
                     {item.description}
@@ -330,9 +330,9 @@ const HeroSection = () => {
               isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
             }`}
           >
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 xl:gap-6 justify-center items-center">
               <button 
-                className="px-10 py-5 rounded-full font-bold text-xl transition-all duration-300 hover:scale-110 hover:shadow-2xl backdrop-blur-sm border-2"
+                className="px-6 lg:px-8 xl:px-10 py-3 lg:py-4 xl:py-5 rounded-full font-bold text-base lg:text-lg xl:text-xl transition-all duration-300 hover:scale-110 hover:shadow-2xl backdrop-blur-sm border-2"
                 style={{
                   backgroundColor: colors.lavender,
                   color: colors.base,
@@ -345,7 +345,7 @@ const HeroSection = () => {
               </button>
               
               <button 
-                className="px-10 py-5 rounded-full font-bold text-xl border-2 transition-all duration-300 hover:scale-110 backdrop-blur-sm"
+                className="px-6 lg:px-8 xl:px-10 py-3 lg:py-4 xl:py-5 rounded-full font-bold text-base lg:text-lg xl:text-xl border-2 transition-all duration-300 hover:scale-110 backdrop-blur-sm"
                 style={{
                   borderColor: colors.blue,
                   color: colors.blue,

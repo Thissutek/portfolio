@@ -244,3 +244,53 @@ h1, h2, h3, p, span {
     transform: scale(1.02);
   }
 }
+
+/* Laptop-specific optimizations */
+@media (min-width: 769px) and (max-width: 1366px) {
+  /* Reduce excessive spacing on laptop screens */
+  .laptop-spacing {
+    padding: 0.75rem 1rem;
+  }
+  
+  /* Optimize font sizes for laptop viewports */
+  .laptop-text {
+    font-size: 0.9rem;
+  }
+  
+  /* Reduce oversized elements */
+  .laptop-scale {
+    transform: scale(0.95);
+  }
+  
+  /* Make hero section more compact on laptops */
+  .hero-section {
+    transform: scale(0.9);
+    transform-origin: center;
+  }
+  
+  /* Tighter spacing for mosaic grid */
+  .mosaic-grid {
+    gap: 0.75rem !important;
+    padding: 1rem !important;
+  }
+  
+  /* Reduce video card sizes */
+  .video-card {
+    transform: scale(0.95);
+  }
+  
+  /* Compact text sizes */
+  h1 {
+    font-size: clamp(2rem, 4vw, 3.5rem) !important;
+  }
+  
+  h2 {
+    font-size: clamp(1.2rem, 2.5vw, 2rem) !important;
+  }
+  
+  /* Reduce button sizes */
+  button {
+    padding: 0.75rem 1.5rem !important;
+    font-size: 0.9rem !important;
+  }
+}

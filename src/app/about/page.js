@@ -81,16 +81,16 @@ export default function About() {
       <VideoJourneyAnimation scrollPosition={scrollPosition} />
 
       {/* Page content - increased vertical spacing between sections */}
-      <div className="relative z-10 min-h-screen py-32 px-8">
+      <div className="relative z-10 min-h-screen py-24 lg:py-32 px-6 lg:px-8">
         <h1
-          className="text-3xl font-bold mb-16 text-center"
+          className="text-2xl lg:text-3xl font-bold mb-12 lg:mb-16 text-center"
           style={{ color: colors.text }}
         >
           About My Journey
         </h1>
 
         {/* Text sections with fade effect - increased spacing with space-y-96 */}
-        <div className="max-w-2xl mx-auto space-y-64">
+        <div className="max-w-2xl mx-auto space-y-48 lg:space-y-64">
           {journeySections.map((section, index) => (
             <JourneySection
               key={index}

@@ -18,10 +18,10 @@ const JourneySection = ({
         justifyContent: "center",
       }}
     >
-      <h2 className="text-2xl font-bold mb-4" style={{ color: accentColor }}>
+      <h2 className="text-xl lg:text-2xl font-bold mb-4" style={{ color: accentColor }}>
         {title}
       </h2>
-      <p style={{ color: colors.text }}>{content}</p>
+      <p className="text-base lg:text-lg leading-relaxed" style={{ color: colors.text }}>{content}</p>
     </div>
   );
 };
