@@ -14,10 +14,16 @@ export default function RootLayout({ children }) {
         className={inter.className}
         style={{ backgroundColor: colors.base }}
       >
-        <div className={styles.container}>
-          <Sidebar />
-          <div className={styles.content}>{children}</div>
-        </div>
+        <Sidebar />
+        <main 
+          className="relative"
+          style={{ 
+            paddingTop: '70px', // Account for fixed navbar height
+            minHeight: '100vh',
+          }}
+        >
+          {children}
+        </main>
       </body>
     </html>
   );

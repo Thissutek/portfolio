@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Home, User, Mail, Github, Linkedin, Menu, X } from "lucide-react";
 import { colors, styles } from "@/styles/theme";
 
-const Sidebar = () => {
+const Navbar = () => {
   const router = useRouter();
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
@@ -21,40 +21,43 @@ const Sidebar = () => {
 
   const activePage = getActivePage();
 
-  // Navigation items config
+  // Navigation items config - All 5 buttons including social links
   const navItems = [
     {
       id: "home",
-      icon: <Home className={styles.navIcon} size={20} />,
+      icon: <Home size={18} />,
       text: "Home",
       path: "/",
+      isInternal: true,
     },
     {
       id: "about",
-      icon: <User className={styles.navIcon} size={20} />,
-      text: "About",
+      icon: <User size={18} />,
+      text: "About Me",
       path: "/about",
+      isInternal: true,
     },
     {
       id: "contact",
-      icon: <Mail className={styles.navIcon} size={20} />,
+      icon: <Mail size={18} />,
       text: "Contact",
       path: "/contact",
+      isInternal: true,
     },
-  ];
-
-  // Social media links
-  const socialLinks = [
     {
       id: "github",
       icon: <Github size={18} />,
-      url: "https://github.com/Thissutek",
+      text: "GitHub",
+      path: "https://github.com/Thissutek",
+      isInternal: false,
       ariaLabel: "GitHub Profile",
     },
     {
       id: "linkedin",
       icon: <Linkedin size={18} />,
-      url: "https://www.linkedin.com/in/jonathan-yau-6a649a207/",
+      text: "LinkedIn",
+      path: "https://www.linkedin.com/in/jonathan-yau-6a649a207/",
+      isInternal: false,
       ariaLabel: "LinkedIn Profile",
     },
   ];
@@ -64,9 +67,9 @@ const Sidebar = () => {
       {/* Mobile Menu Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="md:hidden fixed top-4 left-4 z-50 p-3 rounded-lg transition-all duration-300"
+        className="md:hidden fixed top-4 right-4 z-50 p-3 rounded-lg transition-all duration-300"
         style={{
-          backgroundColor: colors.surface,
+          backgroundColor: `${colors.surface}95`,
           color: colors.lavender,
           backdropFilter: "blur(20px)",
           border: `1px solid ${colors.overlay}30`,
@@ -83,61 +86,140 @@ const Sidebar = () => {
         />
       )}
 
-      {/* Sidebar */}
-      <div 
-        className={`${styles.sidebar} md:relative fixed left-0 top-0 h-full z-50 transition-transform duration-300 ease-in-out ${
-          isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
-        }`}
-        style={{ backgroundColor: colors.surface }}
+      {/* Top Navigation Bar */}
+      <nav 
+        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out"
+        style={{
+          backgroundColor: `${colors.surface}95`,
+          backdropFilter: "blur(20px)",
+          borderBottom: `1px solid ${colors.overlay}20`,
+          height: '70px',
+        }}
       >
-        <div className={styles.sidebarTitle} style={{ color: colors.lavender }}>
-          JY
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+          <div className="flex items-center justify-center h-full">
+            
+            {/* Desktop Navigation - All 5 buttons */}
+            <div className="hidden md:flex items-center space-x-4 lg:space-x-6 xl:space-x-8">
+              {navItems.map((item) => {
+                if (item.isInternal) {
+                  return (
+                    <Link
+                      key={item.id}
+                      href={item.path}
+                      className="flex items-center space-x-2 px-3 lg:px-4 py-2 rounded-lg transition-all duration-300 hover:scale-105"
+                      style={{
+                        backgroundColor: activePage === item.id ? `${colors.lavender}20` : "transparent",
+                        color: activePage === item.id ? colors.lavender : colors.text,
+                        border: activePage === item.id ? `1px solid ${colors.lavender}40` : "1px solid transparent",
+                      }}
+                      onMouseEnter={(e) => {
+                        if (activePage !== item.id) {
+                          e.currentTarget.style.backgroundColor = `${colors.overlay}20`;
+                          e.currentTarget.style.borderColor = `${colors.overlay}40`;
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        if (activePage !== item.id) {
+                          e.currentTarget.style.backgroundColor = "transparent";
+                          e.currentTarget.style.borderColor = "transparent";
+                        }
+                      }}
+                    >
+                      {item.icon}
+                      <span className="font-medium text-sm lg:text-base">{item.text}</span>
+                    </Link>
+                  );
+                } else {
+                  return (
+                    <a
+                      key={item.id}
+                      href={item.path}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={item.ariaLabel}
+                      className="flex items-center space-x-2 px-3 lg:px-4 py-2 rounded-lg transition-all duration-300 hover:scale-105"
+                      style={{
+                        color: colors.text,
+                        border: "1px solid transparent",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = `${colors.overlay}20`;
+                        e.currentTarget.style.borderColor = `${colors.overlay}40`;
+                        e.currentTarget.style.color = colors.lavender;
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = "transparent";
+                        e.currentTarget.style.borderColor = "transparent";
+                        e.currentTarget.style.color = colors.text;
+                      }}
+                    >
+                      {item.icon}
+                      <span className="font-medium text-sm lg:text-base">{item.text}</span>
+                    </a>
+                  );
+                }
+              })}
+            </div>
+          </div>
         </div>
 
-        <nav className={styles.nav}>
-          {navItems.map((item) => (
-            <Link
-              key={item.id}
-              href={item.path}
-              onClick={() => setIsOpen(false)}
-              className={`${styles.navItem} ${activePage === item.id ? styles.navItemActive : ""}`}
-              style={{
-                backgroundColor:
-                  activePage === item.id ? colors.overlay : "transparent",
-                color: activePage === item.id ? colors.lavender : colors.text,
-              }}
-            >
-              {item.icon}
-              <span className={styles.navText}>{item.text}</span>
-            </Link>
-          ))}
-        </nav>
-
-        {/* Social media links at the bottom */}
-        <div className="mt-auto pt-6 flex justify-center space-x-4">
-          {socialLinks.map((social) => (
-            <a
-              key={social.id}
-              href={social.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={social.ariaLabel}
-              className="p-1.5 transition-colors duration-200 rounded-lg hover:bg-opacity-20"
-              style={{ color: colors.text }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.backgroundColor = `${colors.overlay}33`)
+        {/* Mobile Navigation Menu */}
+        <div 
+          className={`md:hidden absolute top-full left-0 right-0 transition-all duration-300 ease-in-out ${
+            isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
+          }`}
+          style={{
+            backgroundColor: `${colors.surface}98`,
+            backdropFilter: "blur(25px)",
+            borderBottom: `1px solid ${colors.overlay}20`,
+          }}
+        >
+          <div className="px-4 py-6 space-y-3">
+            {navItems.map((item) => {
+              if (item.isInternal) {
+                return (
+                  <Link
+                    key={item.id}
+                    href={item.path}
+                    onClick={() => setIsOpen(false)}
+                    className="flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-300"
+                    style={{
+                      backgroundColor: activePage === item.id ? `${colors.lavender}20` : "transparent",
+                      color: activePage === item.id ? colors.lavender : colors.text,
+                      border: `1px solid ${activePage === item.id ? colors.lavender + "40" : "transparent"}`,
+                    }}
+                  >
+                    {item.icon}
+                    <span className="font-medium">{item.text}</span>
+                  </Link>
+                );
+              } else {
+                return (
+                  <a
+                    key={item.id}
+                    href={item.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={item.ariaLabel}
+                    onClick={() => setIsOpen(false)}
+                    className="flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-300"
+                    style={{
+                      color: colors.text,
+                      border: "1px solid transparent",
+                    }}
+                  >
+                    {item.icon}
+                    <span className="font-medium">{item.text}</span>
+                  </a>
+                );
               }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.backgroundColor = "transparent")
-              }
-            >
-              {social.icon}
-            </a>
-          ))}
+            })}
+          </div>
         </div>
-      </div>
+      </nav>
     </>
   );
 };
 
-export default Sidebar;
+export default Navbar;

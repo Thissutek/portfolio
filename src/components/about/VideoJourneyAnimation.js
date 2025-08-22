@@ -63,7 +63,7 @@ const VideoJourneyAnimation = ({ scrollPosition }) => {
     <div
       className="fixed inset-0 z-0 pointer-events-none"
       style={{
-        left: "80px", // Match sidebar width (w-20)
+        top: "70px", // Account for top navbar height
         overflow: "hidden",
       }}
     >

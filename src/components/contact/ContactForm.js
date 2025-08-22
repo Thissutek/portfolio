@@ -71,11 +71,11 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto">
-      <h1 className="text-3xl font-bold mb-6" style={{ color: colors.text }}>
+    <div className="max-w-md mx-auto p-6 lg:p-0">
+      <h1 className="text-2xl lg:text-3xl font-bold mb-6" style={{ color: colors.text }}>
         Contact Me
       </h1>
-      <p className="mb-6" style={{ color: colors.subtext }}>
+      <p className="mb-6 text-sm lg:text-base" style={{ color: colors.subtext }}>
         Feel free to reach out if you&apos;d like to work together!
       </p>
 
@@ -96,7 +96,7 @@ const ContactForm = () => {
 
       <form ref={form} onSubmit={handleSubmit} className={styles.contactForm}>
         <div>
-          <label className="block mb-1" style={{ color: colors.lavender }}>
+          <label className="block mb-1 text-sm lg:text-base" style={{ color: colors.lavender }}>
             Name
           </label>
           <input
@@ -110,7 +110,7 @@ const ContactForm = () => {
         </div>
 
         <div>
-          <label className="block mb-1" style={{ color: colors.lavender }}>
+          <label className="block mb-1 text-sm lg:text-base" style={{ color: colors.lavender }}>
             Email
           </label>
           <input
@@ -124,7 +124,7 @@ const ContactForm = () => {
         </div>
 
         <div>
-          <label className="block mb-1" style={{ color: colors.lavender }}>
+          <label className="block mb-1 text-sm lg:text-base" style={{ color: colors.lavender }}>
             Message
           </label>
           <textarea

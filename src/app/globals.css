@@ -10,7 +10,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 body {
@@ -120,5 +120,177 @@ h1, h2, h3, p, span {
   50% {
     opacity: 1;
     filter: blur(10px);
+  }
+}
+
+/* Cinematic video transitions */
+@keyframes videoFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Dramatic text entrance */
+@keyframes dramaticEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(60px) scale(0.9);
+    filter: blur(10px);
+  }
+  60% {
+    transform: translateY(-10px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* Cinematic glow text */
+@keyframes cinematicGlow {
+  0%, 100% {
+    text-shadow: 0 0 20px currentColor, 0 0 40px currentColor, 0 0 60px currentColor;
+  }
+  50% {
+    text-shadow: 0 0 30px currentColor, 0 0 60px currentColor, 0 0 90px currentColor;
+  }
+}
+
+/* Hero button hover */
+@keyframes heroButtonPulse {
+  0% {
+    box-shadow: 0 20px 40px -10px currentColor;
+  }
+  50% {
+    box-shadow: 0 30px 60px -15px currentColor, 0 0 0 0 currentColor;
+  }
+  100% {
+    box-shadow: 0 20px 40px -10px currentColor, 0 0 0 10px transparent;
+  }
+}
+
+/* Stage indicator animation */
+@keyframes stageIndicator {
+  0% {
+    width: 2rem;
+    opacity: 0.4;
+  }
+  50% {
+    width: 4rem;
+    opacity: 0.8;
+  }
+  100% {
+    width: 4rem;
+    opacity: 1;
+  }
+}
+
+/* Video mask overlay */
+@keyframes videoMask {
+  0% {
+    clip-path: circle(0% at center);
+  }
+  100% {
+    clip-path: circle(100% at center);
+  }
+}
+
+/* Additional hero animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Responsive utilities */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Hover scale optimizations */
+.hover-scale {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+/* Performance improvements for mobile */
+@media (max-width: 768px) {
+  * {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+  
+  .hover-scale:hover {
+    transform: scale(1.02);
+  }
+}
+
+/* Laptop-specific optimizations */
+@media (min-width: 769px) and (max-width: 1366px) {
+  /* Reduce excessive spacing on laptop screens */
+  .laptop-spacing {
+    padding: 0.75rem 1rem;
+  }
+  
+  /* Optimize font sizes for laptop viewports */
+  .laptop-text {
+    font-size: 0.9rem;
+  }
+  
+  /* Reduce oversized elements */
+  .laptop-scale {
+    transform: scale(0.95);
+  }
+  
+  /* Make hero section more compact on laptops */
+  .hero-section {
+    transform: scale(0.9);
+    transform-origin: center;
+  }
+  
+  /* Tighter spacing for mosaic grid */
+  .mosaic-grid {
+    gap: 0.75rem !important;
+    padding: 1rem !important;
+  }
+  
+  /* Reduce video card sizes */
+  .video-card {
+    transform: scale(0.95);
+  }
+  
+  /* Compact text sizes */
+  h1 {
+    font-size: clamp(2rem, 4vw, 3.5rem) !important;
+  }
+  
+  h2 {
+    font-size: clamp(1.2rem, 2.5vw, 2rem) !important;
+  }
+  
+  /* Reduce button sizes */
+  button {
+    padding: 0.75rem 1.5rem !important;
+    font-size: 0.9rem !important;
   }
 }
