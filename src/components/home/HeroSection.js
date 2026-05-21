@@ -1,391 +1,400 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
-import { colors } from "../../styles/theme";
+import { useEffect, useRef, useState } from "react";
+import { tokens, fonts } from "../../styles/theme";
+import { ArrowDownRight, Code2, Send } from "lucide-react";
+
+const videoMosaic = [
+  { id: 1, src: "/videos/webm/dance-4.webm", size: "large", category: "performance" },
+  { id: 2, src: "/videos/webm/dance-5.webm", size: "medium", category: "performance" },
+  { id: 3, src: "/videos/webm/dance-1.webm", size: "small", category: "performance" },
+  { id: 4, src: "/videos/webm/dance-3.webm", size: "medium", category: "performance" },
+  { id: 5, src: "/videos/webm/dev-2.webm", size: "large", category: "development" },
+  { id: 6, src: "/videos/webm/Project delivery.webm", size: "small", category: "development" },
+  { id: 7, src: "/videos/webm/dev-1.webm", size: "medium", category: "development" },
+  { id: 8, src: "/videos/webm/Course-video.webm", size: "small", category: "education" },
+];
+
+const sizeClasses = {
+  large: "row-span-2 col-span-2",
+  medium: "row-span-2 col-span-1",
+  small: "row-span-1 col-span-1",
+};
+
+const heroLines = [
+  { prompt: "$", text: "whoami" },
+  { prompt: ">", text: "jonathan yau · developer · dancer · creator" },
+  { prompt: "$", text: "cat ./mission.md" },
+];
 
 const HeroSection = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [hoveredVideo, setHoveredVideo] = useState(null);
-  const mosaicRef = useRef();
-
-  // Video mosaic data - using optimized WebM videos
-  const videoMosaic = [
-    { 
-      id: 1,
-      src: "/videos/webm/dance-4.webm", 
-      title: "Dance Performance 4",
-      category: "Performance",
-      size: "large",
-      thumbnail: "/imgs/dance-contemporary.jpg"
-    },
-    { 
-      id: 2,
-      src: "/videos/webm/dance-5.webm", 
-      title: "Dance Performance 5",
-      category: "Performance",
-      size: "medium",
-      thumbnail: "/imgs/coding-react.jpg"
-    },
-    { 
-      id: 3,
-      src: "/videos/webm/dance-1.webm", 
-      title: "Dance Performance 1",
-      category: "Performance",
-      size: "small",
-      thumbnail: "/imgs/ai-course.jpg"
-    },
-    { 
-      id: 4,
-      src: "/videos/webm/dance-3.webm", 
-      title: "Dance Performance 3",
-      category: "Performance",
-      size: "medium",
-      thumbnail: "/imgs/dance-hiphop.jpg"
-    },
-    { 
-      id: 5,
-      src: "/videos/webm/dev-2.webm", 
-      title: "Development Project 2",
-      category: "Development",
-      size: "large",
-      thumbnail: "/imgs/animation-work.jpg"
-    },
-    { 
-      id: 6,
-      src: "/videos/webm/Project delivery.webm", 
-      title: "Project Delivery",
-      category: "Development",
-      size: "small",
-      thumbnail: "/imgs/live-coding.jpg"
-    },
-    { 
-      id: 7,
-      src: "/videos/webm/dev-1.webm", 
-      title: "Development Project 1",
-      category: "Development",
-      size: "medium",
-      thumbnail: "/imgs/dance-battle.jpg"
-    },
-    { 
-      id: 8,
-      src: "/videos/webm/Course-video.webm", 
-      title: "Course Content",
-      category: "Education",
-      size: "small",
-      thumbnail: "/imgs/ai-course.jpg"
-    }
-  ];
-
-  const getSizeClasses = (size) => {
-    switch(size) {
-      case 'large': return 'row-span-2 col-span-2';
-      case 'medium': return 'row-span-2 col-span-1';
-      case 'small': return 'row-span-1 col-span-1';
-      default: return 'row-span-1 col-span-1';
-    }
-  };
+  const [mounted, setMounted] = useState(false);
+  const [time, setTime] = useState("");
 
   useEffect(() => {
-    setIsVisible(true);
+    setMounted(true);
+    const tick = () => {
+      const d = new Date();
+      setTime(
+        d.toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+        }),
+      );
+    };
+    tick();
+    const id = setInterval(tick, 30000);
+    return () => clearInterval(id);
   }, []);
 
   return (
-    <div className="relative h-screen lg:h-[120vh] xl:h-screen w-full overflow-hidden">
-      
-      {/* Video Mosaic Background */}
-      <div 
-        ref={mosaicRef}
-        className="absolute inset-0 z-0 grid grid-cols-4 grid-rows-4 gap-4 p-6 mx-8 lg:mx-16 xl:mx-24"
+    <section
+      className="relative min-h-[100svh] w-full overflow-hidden flex items-center"
+      style={{ background: tokens.bgDeep }}
+    >
+      {/* Video mosaic — atmospheric backdrop */}
+      <div
+        className="absolute inset-0 z-0 grid grid-cols-4 grid-rows-4 gap-3 p-4 md:p-6 opacity-90"
+        aria-hidden
       >
-        {videoMosaic.map((video, index) => (
+        {videoMosaic.map((v, i) => (
           <div
-            key={video.id}
-            className={`relative overflow-hidden rounded-2xl ${getSizeClasses(video.size)} group cursor-pointer backdrop-blur-md border`}
+            key={v.id}
+            className={`relative overflow-hidden rounded-xl ${sizeClasses[v.size]}`}
             style={{
-              animationDelay: `${index * 200}ms`,
-              backgroundColor: `${colors.surface}33`,
-              borderColor: `${colors.overlay}22`,
-              backdropFilter: 'blur(12px)',
-              boxShadow: `0 8px 32px ${colors.base}44, inset 0 1px 0 ${colors.overlay}11`
+              animation: `fadeIn 1.2s ease-out ${i * 110}ms both`,
+              boxShadow: "inset 0 0 80px rgba(17,17,27,0.6)",
             }}
-            onMouseEnter={() => setHoveredVideo(video.id)}
-            onMouseLeave={() => setHoveredVideo(null)}
           >
-            {/* Video Element or Placeholder */}
-            {video.src ? (
-              <video
-                className="absolute inset-2 w-full h-full rounded-xl object-cover transition-all duration-700 group-hover:scale-105"
-                autoPlay
-                muted
-                playsInline
-                preload="metadata"
-                onTimeUpdate={(e) => {
-                  if (e.target.currentTime >= 20) {
-                    e.target.currentTime = 0;
-                  }
-                }}
-                onEnded={(e) => {
-                  e.target.currentTime = 0;
-                  e.target.play();
-                }}
-                style={{
-                  filter: hoveredVideo === video.id ? "brightness(1.1) contrast(1.05) saturate(1.1)" : "brightness(0.8) saturate(0.9)",
-                  left: "4px",
-                  right: "4px", 
-                  top: "4px",
-                  bottom: "4px"
-                }}
-              >
-                <source src={video.src} type="video/webm" />
-              </video>
-            ) : (
-              // Placeholder for tiles without videos
-              <div 
-                className="absolute inset-2 w-full h-full rounded-xl flex items-center justify-center transition-all duration-700 group-hover:scale-105"
-                style={{
-                  background: `linear-gradient(135deg, ${colors.surface}80 0%, ${colors.overlay}40 100%)`,
-                  backdropFilter: "blur(10px)",
-                  border: `1px solid ${colors.overlay}30`
-                }}
-              >
-                <div className="text-center">
-                  <div 
-                    className="text-4xl mb-2 opacity-60"
-                    style={{ color: colors.lavender }}
-                  >
-                    📹
-                  </div>
-                  <div 
-                    className="text-sm font-medium opacity-80"
-                    style={{ color: colors.text }}
-                  >
-                    Coming Soon
-                  </div>
-                </div>
-              </div>
-            )}
-            
-            {/* Glassmorphism Overlay */}
-            <div 
-              className={`absolute inset-2 rounded-xl transition-all duration-500 ${
-                hoveredVideo === video.id 
-                ? "bg-gradient-to-t from-black/60 via-transparent to-transparent backdrop-blur-sm" 
-                : "bg-gradient-to-br from-white/10 via-transparent to-black/20"
-              }`}
-              style={{
-                backdropFilter: hoveredVideo === video.id ? "blur(2px)" : "blur(1px)",
-                border: hoveredVideo === video.id ? `1px solid ${colors.lavender}44` : `1px solid ${colors.overlay}11`
-              }}
-            />
-            
-
-
-            {/* Video Info with Glassmorphism */}
-            <div 
-              className={`absolute bottom-2 left-2 right-2 p-3 rounded-lg backdrop-blur-md border transform transition-all duration-500 ${
-                hoveredVideo === video.id ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
-              }`}
-              style={{
-                backgroundColor: `${colors.base}77`,
-                borderColor: `${colors.overlay}33`,
-                backdropFilter: "blur(16px)"
-              }}
+            <video
+              className="absolute inset-0 w-full h-full object-cover"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              style={{ filter: "brightness(0.55) saturate(0.85)" }}
             >
-              <div 
-                className="text-xs font-medium mb-1"
-                style={{ color: colors.peach }}
-              >
-                {video.category}
-              </div>
-              <div 
-                className="text-sm font-bold"
-                style={{ color: colors.text }}
-              >
-                {video.title}
-              </div>
-            </div>
+              <source src={v.src} type="video/webm" />
+            </video>
           </div>
         ))}
-        
-        {/* Overall Glassmorphism Overlay */}
-        <div 
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: `linear-gradient(135deg, 
-              ${colors.base}33 0%, 
-              transparent 30%, 
-              transparent 70%, 
-              ${colors.base}33 100%)`,
-            backdropFilter: "blur(2px)"
-          }}
-        />
       </div>
 
-      {/* Content Layer */}
-      <div className="relative z-10 h-full flex items-center justify-center">
-        <div className="text-center px-8 max-w-5xl">
-          
-          {/* Main Brand Statement */}
-          <div 
-            className={`transform transition-all duration-1500 delay-800 ${
-              isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
-            }`}
+      {/* Cinematic gradient + vignette */}
+      <div
+        className="absolute inset-0 z-[1] pointer-events-none"
+        style={{
+          background: `radial-gradient(ellipse at 50% 50%, transparent 0%, rgba(17,17,27,0.35) 35%, rgba(17,17,27,0.85) 70%, rgba(17,17,27,0.96) 100%)`,
+        }}
+      />
+
+      {/* Grid overlay + scanlines */}
+      <div className="absolute inset-0 z-[2] grid-overlay scanlines pointer-events-none" />
+
+      {/* Ambient color glow */}
+      <div
+        className="absolute -top-32 -left-32 w-[40rem] h-[40rem] rounded-full ambient-glow pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(180,190,254,0.20), transparent 60%)" }}
+      />
+      <div
+        className="absolute -bottom-40 -right-40 w-[44rem] h-[44rem] rounded-full ambient-glow pointer-events-none"
+        style={{
+          background: "radial-gradient(circle, rgba(250,179,135,0.16), transparent 60%)",
+          animationDelay: "3s",
+        }}
+      />
+
+      {/* Foreground IDE panel */}
+      <div className="relative z-10 mx-auto max-w-6xl px-4 md:px-8 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          {/* Left — terminal card */}
+          <div
+            className={`lg:col-span-7 ${mounted ? "animate-ideEnter" : "opacity-0"}`}
           >
-            <h1 
-              className="text-3xl md:text-4xl lg:text-5xl xl:text-7xl font-black mb-3 lg:mb-4 xl:mb-6 leading-none"
-              style={{
-                background: `linear-gradient(135deg, ${colors.lavender}, ${colors.blue}, ${colors.peach})`,
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                textShadow: "0 0 40px rgba(180, 190, 254, 0.3)"
-              }}
-            >
-              JONATHAN YAU
-            </h1>
-            
-            <div className="h-8 lg:h-12 xl:h-16 mb-4 lg:mb-6 xl:mb-8 flex items-center justify-center">
-              <h2 
-                className="text-base md:text-lg lg:text-xl xl:text-3xl font-light tracking-wider"
-                style={{ 
-                  color: colors.text,
-                  textShadow: "0 2px 20px rgba(0,0,0,0.8)"
+            <div className="glass-panel-strong rounded-2xl overflow-hidden">
+              {/* window chrome */}
+              <div
+                className="flex items-center gap-2 px-4 py-2.5 border-b"
+                style={{
+                  borderColor: "rgba(180,190,254,0.10)",
+                  background: "rgba(17,17,27,0.6)",
+                  fontFamily: fonts.mono,
                 }}
               >
-                Developer &bull; Dancer &bull; Creator
-              </h2>
-            </div>
-          </div>
+                <span className="w-3 h-3 rounded-full" style={{ background: "#f38ba8" }} />
+                <span className="w-3 h-3 rounded-full" style={{ background: "#f9e2af" }} />
+                <span className="w-3 h-3 rounded-full" style={{ background: "#a6e3a1" }} />
+                <span
+                  className="ml-3 text-[11px] tracking-[0.18em] uppercase"
+                  style={{ color: tokens.fgDim }}
+                >
+                  ~/about/jonathan-yau · zsh
+                </span>
+                <span className="ml-auto flex items-center gap-2 text-[11px]" style={{ color: tokens.fgDim }}>
+                  <span className="relative inline-flex w-2 h-2">
+                    <span
+                      className="absolute inset-0 rounded-full animate-pulseRing"
+                      style={{ background: tokens.accentSuccess }}
+                    />
+                    <span
+                      className="relative rounded-full w-2 h-2"
+                      style={{ background: tokens.accentSuccess }}
+                    />
+                  </span>
+                  live · {time}
+                </span>
+              </div>
 
-          {/* Unique Selling Points */}
-          <div 
-            className={`transform transition-all duration-1500 delay-1000 ${
-              isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
-            }`}
-          >
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 lg:gap-4 xl:gap-6 mb-6 lg:mb-8 xl:mb-12">
-              {[
-                { 
-                  title: "10+ Years", 
-                  subtitle: "Professional Dance", 
-                  description: "Stage performance & choreography",
-                  color: colors.peach,
-                  bgColor: colors.peach
-                },
-                { 
-                  title: "OCAD Graduate", 
-                  subtitle: "Animation Degree", 
-                  description: "Visual storytelling expertise",
-                  color: colors.lavender,
-                  bgColor: colors.lavender
-                },
-                { 
-                  title: "Full-Stack", 
-                  subtitle: "Software Developer", 
-                  description: "Modern web technologies",
-                  color: colors.green,
-                  bgColor: colors.green
-                }
-              ].map((item, index) => (
-                <div 
-                  key={index}
-                  className="relative backdrop-blur-xl border border-opacity-20 rounded-xl p-3 lg:p-4 xl:p-6 transition-all duration-500 hover:scale-105 group"
+              <div className="p-6 md:p-8" style={{ fontFamily: fonts.mono }}>
+                {heroLines.map((line, i) => (
+                  <div
+                    key={i}
+                    className="flex items-baseline gap-2 text-sm md:text-base mb-1.5"
+                    style={{
+                      color: tokens.fgMuted,
+                      opacity: 0,
+                      animation: `fadeInUp 0.45s ease-out ${250 + i * 220}ms both`,
+                    }}
+                  >
+                    <span style={{ color: tokens.accent }}>{line.prompt}</span>
+                    <span>{line.text}</span>
+                  </div>
+                ))}
+
+                {/* Headline as variable declaration */}
+                <div
+                  className="mt-6"
                   style={{
-                    backgroundColor: `${item.bgColor}11`,
-                    borderColor: `${item.color}44`,
-                    animationDelay: `${1200 + index * 200}ms`
+                    fontFamily: fonts.mono,
+                    opacity: 0,
+                    animation: "fadeInUp 0.55s ease-out 950ms both",
                   }}
                 >
-                  <div 
-                    className="text-lg lg:text-xl xl:text-2xl font-bold mb-1 lg:mb-2"
-                    style={{ color: item.color }}
-                  >
-                    {item.title}
-                  </div>
-                  <div 
-                    className="text-xs lg:text-sm xl:text-base font-semibold mb-1 lg:mb-2"
-                    style={{ color: colors.text }}
-                  >
-                    {item.subtitle}
-                  </div>
-                  <div 
-                    className="text-xs opacity-90"
-                    style={{ color: colors.subtext }}
-                  >
-                    {item.description}
-                  </div>
-                  
-                  {/* Hover glow */}
-                  <div 
-                    className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-30 transition-opacity duration-500"
-                    style={{
-                      background: `linear-gradient(45deg, ${item.color}33, ${item.color}55)`
-                    }}
+                  <span style={{ color: tokens.codeKeyword }}>const </span>
+                  <span style={{ color: tokens.codeFunction }}>portfolio </span>
+                  <span style={{ color: tokens.codePunct }}>= </span>
+                  <span style={{ color: tokens.codeString }}>{"{"}</span>
+                </div>
+
+                {/* Big display name */}
+                <h1
+                  className="my-3 font-display font-bold leading-[0.95] tracking-tight"
+                  style={{
+                    fontSize: "clamp(2.5rem, 6.4vw, 5.5rem)",
+                    background: `linear-gradient(120deg, ${tokens.accent} 0%, ${tokens.accentSoft} 45%, ${tokens.accentWarm} 100%)`,
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    textShadow: "0 0 60px rgba(180,190,254,0.18)",
+                    opacity: 0,
+                    animation: "fadeInUp 0.7s ease-out 1100ms both",
+                  }}
+                >
+                  Jonathan Yau
+                </h1>
+
+                {/* Subtitle as code property */}
+                <div
+                  className="text-sm md:text-base mb-1"
+                  style={{
+                    fontFamily: fonts.mono,
+                    opacity: 0,
+                    animation: "fadeInUp 0.5s ease-out 1280ms both",
+                  }}
+                >
+                  <span style={{ color: tokens.codeComment }}>{"// role"}</span>
+                </div>
+                <div
+                  className="text-base md:text-lg mb-5"
+                  style={{
+                    fontFamily: fonts.mono,
+                    opacity: 0,
+                    animation: "fadeInUp 0.5s ease-out 1340ms both",
+                  }}
+                >
+                  <span style={{ color: tokens.fgMuted }}>  role: </span>
+                  <span style={{ color: tokens.codeString }}>
+                    &quot;full-stack developer · animator · choreographer&quot;
+                  </span>
+                  <span style={{ color: tokens.codePunct }}>,</span>
+                </div>
+                <div
+                  className="text-base md:text-lg mb-5"
+                  style={{
+                    fontFamily: fonts.mono,
+                    opacity: 0,
+                    animation: "fadeInUp 0.5s ease-out 1420ms both",
+                  }}
+                >
+                  <span style={{ color: tokens.fgMuted }}>  mission: </span>
+                  <span style={{ color: tokens.codeString }}>
+                    &quot;build software that feels alive&quot;
+                  </span>
+                </div>
+
+                <div
+                  style={{
+                    fontFamily: fonts.mono,
+                    opacity: 0,
+                    animation: "fadeInUp 0.5s ease-out 1500ms both",
+                  }}
+                >
+                  <span style={{ color: tokens.codeString }}>{"}"}</span>
+                  <span
+                    className="ml-1 inline-block align-middle h-5 w-[2px] animate-blink"
+                    style={{ background: tokens.accent }}
                   />
                 </div>
-              ))}
+
+                {/* CTAs */}
+                <div
+                  className="mt-8 flex flex-col sm:flex-row gap-3"
+                  style={{
+                    opacity: 0,
+                    animation: "fadeInUp 0.6s ease-out 1700ms both",
+                  }}
+                >
+                  <button
+                    onClick={() =>
+                      document
+                        .getElementById("portfolio-showcase")
+                        ?.scrollIntoView({ behavior: "smooth" })
+                    }
+                    className="group inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg font-medium text-sm transition-all duration-300"
+                    style={{
+                      background: `linear-gradient(120deg, ${tokens.accent}, ${tokens.accentSoft})`,
+                      color: tokens.bg,
+                      fontFamily: fonts.mono,
+                      boxShadow: `0 16px 40px -12px ${tokens.accent}88`,
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = "translateY(-2px)";
+                      e.currentTarget.style.boxShadow = `0 24px 50px -12px ${tokens.accent}aa`;
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = "translateY(0)";
+                      e.currentTarget.style.boxShadow = `0 16px 40px -12px ${tokens.accent}88`;
+                    }}
+                  >
+                    <Code2 size={15} />
+                    <span>./view-projects</span>
+                  </button>
+                  <a
+                    href="/contact"
+                    className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg font-medium text-sm transition-all duration-300"
+                    style={{
+                      background: "transparent",
+                      border: `1px solid ${tokens.divider}`,
+                      color: tokens.fg,
+                      fontFamily: fonts.mono,
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = tokens.accentWarm;
+                      e.currentTarget.style.color = tokens.accentWarm;
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = tokens.divider;
+                      e.currentTarget.style.color = tokens.fg;
+                    }}
+                  >
+                    <Send size={14} />
+                    <span>./open-issue</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Call to Action */}
-          <div 
-            className={`transform transition-all duration-1500 delay-1400 ${
-              isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
-            }`}
-          >
-            <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 xl:gap-6 justify-center items-center">
-              <button 
-                className="px-6 lg:px-8 xl:px-10 py-3 lg:py-4 xl:py-5 rounded-full font-bold text-base lg:text-lg xl:text-xl transition-all duration-300 hover:scale-110 hover:shadow-2xl backdrop-blur-sm border-2"
+          {/* Right — stats stack */}
+          <div className="lg:col-span-5 flex flex-col gap-3">
+            {[
+              {
+                key: "experience",
+                value: "10+ yrs",
+                label: "professional dance",
+                detail: "stage · choreography · teaching",
+                accent: tokens.accentWarm,
+              },
+              {
+                key: "education",
+                value: "OCAD",
+                label: "animation, BFA",
+                detail: "visual storytelling · motion",
+                accent: tokens.accent,
+              },
+              {
+                key: "stack",
+                value: "Full-Stack",
+                label: "ts · react · next · supabase",
+                detail: "ai-integrated product builds",
+                accent: tokens.accentSuccess,
+              },
+            ].map((s, i) => (
+              <div
+                key={s.key}
+                className="relative glass-panel rounded-xl px-5 py-4 hover-lift overflow-hidden"
                 style={{
-                  backgroundColor: colors.lavender,
-                  color: colors.base,
-                  borderColor: colors.lavender,
-                  boxShadow: `0 10px 30px ${colors.lavender}33`
+                  fontFamily: fonts.mono,
+                  opacity: 0,
+                  animation: `fadeInUp 0.55s ease-out ${1200 + i * 130}ms both`,
                 }}
-                onClick={() => document.getElementById('portfolio-showcase')?.scrollIntoView({ behavior: 'smooth' })}
               >
-                Explore My Work
-              </button>
-              
-              <button 
-                className="px-6 lg:px-8 xl:px-10 py-3 lg:py-4 xl:py-5 rounded-full font-bold text-base lg:text-lg xl:text-xl border-2 transition-all duration-300 hover:scale-110 backdrop-blur-sm"
-                style={{
-                  borderColor: colors.blue,
-                  color: colors.blue,
-                  backgroundColor: "transparent"
-                }}
-                onClick={() => window.open("/contact", "_self")}
-              >
-                Let&apos;s Create Together
-              </button>
-            </div>
+                {/* accent rail */}
+                <div
+                  className="absolute left-0 top-0 bottom-0 w-[3px]"
+                  style={{ background: s.accent }}
+                />
+                <div className="flex items-baseline justify-between mb-1">
+                  <span
+                    className="text-[10px] uppercase tracking-[0.2em]"
+                    style={{ color: tokens.fgDim }}
+                  >
+                    {`// ${s.key}`}
+                  </span>
+                  <span className="text-[10px]" style={{ color: tokens.fgDim }}>
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
+                <div className="flex items-baseline gap-2">
+                  <span
+                    className="font-display font-bold text-2xl md:text-3xl"
+                    style={{ color: s.accent }}
+                  >
+                    {s.value}
+                  </span>
+                  <span className="text-xs md:text-sm" style={{ color: tokens.fg }}>
+                    {s.label}
+                  </span>
+                </div>
+                <p className="text-xs mt-1" style={{ color: tokens.fgMuted }}>
+                  {s.detail}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
-      </div>
 
-      {/* Scroll Indicator */}
-      <div 
-        className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 transition-all duration-1500 delay-1600 ${
-          isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-        }`}
-      >
-        <div className="flex flex-col items-center">
-          <span 
-            className="text-sm mb-3 animate-pulse font-medium"
-            style={{ color: colors.subtext }}
-          >
-            DISCOVER MORE
-          </span>
-          <div 
-            className="w-6 h-10 border-2 rounded-full flex justify-center"
-            style={{ borderColor: colors.overlay }}
-          >
-            <div 
-              className="w-1 h-3 rounded-full mt-2 animate-bounce"
-              style={{ backgroundColor: colors.lavender }}
-            />
-          </div>
-        </div>
+        {/* Scroll cue */}
+        <button
+          onClick={() =>
+            document
+              .getElementById("portfolio-showcase")
+              ?.scrollIntoView({ behavior: "smooth" })
+          }
+          className="hidden md:flex absolute bottom-6 left-1/2 -translate-x-1/2 flex-col items-center gap-1 text-[11px]"
+          style={{
+            color: tokens.fgDim,
+            fontFamily: fonts.mono,
+            opacity: 0,
+            animation: "fadeInUp 0.6s ease-out 2200ms both",
+          }}
+          aria-label="Scroll to projects"
+        >
+          <span className="tracking-[0.3em] uppercase">scroll · explore</span>
+          <ArrowDownRight size={14} className="animate-float" />
+        </button>
       </div>
-    </div>
+    </section>
   );
 };
 

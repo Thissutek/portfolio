@@ -1,20 +1,18 @@
-import { colors } from "@/styles/theme";
+import { tokens, fonts } from "@/styles/theme";
 
 const TechTag = ({ label, accentColor, isHovered }) => {
+  const accent = accentColor || tokens.accentSoft;
   return (
     <span
-      className="text-xs px-2 py-1 rounded-full font-medium"
+      className="inline-flex items-center px-2 py-0.5 rounded-md text-xs"
       style={{
-        background: isHovered 
-          ? `linear-gradient(135deg, ${accentColor}20 0%, ${colors.surface}60 100%)`
-          : `${colors.surface}80`,
-        backdropFilter: "blur(10px)",
-        border: `1px solid ${isHovered ? `${accentColor}30` : `${colors.overlay}40`}`,
-        color: isHovered ? accentColor : colors.text,
-        boxShadow: isHovered ? `0 4px 12px -2px ${accentColor}20` : 'none',
-        transform: 'translateZ(0)', // GPU acceleration
-        transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
-        willChange: 'background, border, color, box-shadow'
+        background: isHovered
+          ? `linear-gradient(135deg, ${accent}22 0%, rgba(49,50,68,0.6) 100%)`
+          : "rgba(49,50,68,0.6)",
+        border: `1px solid ${isHovered ? `${accent}44` : "rgba(180,190,254,0.10)"}`,
+        color: isHovered ? accent : tokens.fg,
+        fontFamily: fonts.mono,
+        transition: "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)",
       }}
     >
       {label}
