@@ -54,7 +54,7 @@ const projects = [
     description:
       "AI-powered note-taking extension built with Deepgram for speech-to-text and text-to-speech capabilities.",
     thumbnail: "/imgs/Note-taking.png",
-    link: "https://www.loom.com/share/ff4b6b8f39c74eb294babb0c19cfebc1",
+    link: "https://www.loom.com/share/503d5386e78c4451b0b69aee6486a3c5?sid=b4b1ac48-b8df-4cb3-b420-e436aaf31356",
     tags: ["react", "chrome-ext", "firebase", "deepgram"],
     disclaimer: "Client project · IP belongs to client.",
   },
